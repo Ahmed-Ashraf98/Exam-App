@@ -30,10 +30,6 @@ export class SigninComponent {
   private readonly _Toaster = new ToastComponent();
   signinForm = new FormsManagerComponent(formTypes.Login).getForm();
 
-  receiveBtnAction(data: MouseEvent) {
-    // Start Calling API
-  }
-
   login(data: any) {
     this._AuthApiManagerService.login(data).subscribe({
       next: (res) => {

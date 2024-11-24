@@ -14,7 +14,7 @@ export class AuthAPIAdapter implements Adapter {
       case RequestCategory.Login:
       case RequestCategory.Register:
         resultObj = {
-          message: data?.message,
+          message: data.message,
           token: data.token,
           user: data.user,
         };
@@ -25,6 +25,17 @@ export class AuthAPIAdapter implements Adapter {
           message: data.message,
           info: data.info,
         };
+        break;
+
+      case RequestCategory.ResetPassword:
+        resultObj = {
+          message: data.message,
+          token: data.token,
+        };
+        break;
+
+      case RequestCategory.VerifyCode:
+        resultObj = { status: data.status };
         break;
     }
 

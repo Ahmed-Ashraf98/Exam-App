@@ -2,4 +2,6 @@ export interface VerifyCodeReq {
   resetCode: string;
 }
 
-export interface VerifyCodeRes {}
+export interface VerifyCodeRes {
+  status: string;
+}

@@ -3,5 +3,5 @@ export enum formTypes {
   Register,
   VerifyCode,
   ForgotPass,
-  SetPass,
+  ResetPass,
 }

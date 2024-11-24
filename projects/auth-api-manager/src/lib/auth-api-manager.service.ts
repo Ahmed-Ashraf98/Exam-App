@@ -81,7 +81,7 @@ export class AuthApiManagerService implements AuthAPI {
    * @returns Observable
    */
   resetPassword(data: ResetPasswordReq): Observable<any> {
-    return this._HttpClient.post(AuthEndpoint.RESET_PASSWORD, data).pipe(
+    return this._HttpClient.put(AuthEndpoint.RESET_PASSWORD, data).pipe(
       map((res: any) =>
         this._AuthAPIAdapter.adapt(res, RequestCategory.ResetPassword)
       ),

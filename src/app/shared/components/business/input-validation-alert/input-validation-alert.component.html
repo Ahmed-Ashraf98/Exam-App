@@ -28,8 +28,8 @@ form.get(inputName)?.dirty )) {
   />
 </div>
 
-}@else if (form.get(inputName)?.touched && form.getError("mismatch") &&
-inputName == "rePassword") {
+} } @else if ((form.get(inputName)?.touched || form.get(inputName)?.dirty )&&
+form.getError("mismatch") && inputName === "rePassword") {
 <div class="card">
   <p-messages
     [value]="[{ severity: 'error', detail: 'The Passwords doesn\'t match' }]"
@@ -37,7 +37,6 @@ inputName == "rePassword") {
     [closable]="false"
   />
 </div>
-}
 
 <!-- End -->
 }

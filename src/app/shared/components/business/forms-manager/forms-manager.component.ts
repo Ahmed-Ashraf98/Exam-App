@@ -6,8 +6,6 @@ import {
   AbstractControl,
 } from '@angular/forms';
 import { formTypes } from '../../../enums/formTypes';
-import { Password } from 'primeng/password';
-import { last } from 'rxjs';
 
 @Component({
   selector: 'app-forms-manager',
@@ -48,7 +46,7 @@ export class FormsManagerComponent {
       Validators.required,
       Validators.pattern('^01[0125][0-9]{8}$'),
     ]),
-    code: new FormControl<string | null>('', [Validators.required]),
+    resetCode: new FormControl<string | null>('', [Validators.required]),
   };
 
   constructor(formType: formTypes) {
@@ -67,8 +65,8 @@ export class FormsManagerComponent {
         return this.registerForm();
       case formTypes.ForgotPass:
         return this.forgotPassForm();
-      case formTypes.SetPass:
-        return this.setPassForm();
+      case formTypes.ResetPass:
+        return this.ResetPassForm();
       case formTypes.VerifyCode:
         return this.verifyCodeForm();
     }
@@ -109,16 +107,20 @@ export class FormsManagerComponent {
     });
   }
 
-  setPassForm() {
-    return new FormGroup({
-      password: this.formsFields.password,
-      rePassword: this.formsFields.rePassword,
-    });
+  ResetPassForm() {
+    return new FormGroup(
+      {
+        email: this.formsFields.email,
+        password: this.formsFields.password,
+        rePassword: this.formsFields.rePassword,
+      },
+      this.confirmPassword
+    );
   }
 
   verifyCodeForm() {
     return new FormGroup({
-      code: this.formsFields.code,
+      resetCode: this.formsFields.resetCode,
     });
   }
 }

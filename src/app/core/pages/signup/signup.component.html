@@ -1,6 +1,6 @@
 <div class="auth-custom-form">
   <h3 class="form-title">Sign Up</h3>
-  <form [formGroup]="registerForm" (ngSubmit)="register(registerForm.value)">
+  <form [formGroup]="registerForm">
     <input
       type="text"
       pInputText
@@ -100,7 +100,7 @@
     ></app-input-validation-alert>
 
     <p-password
-      (ngModelChange)="checkPassword()"
+      (ngModelChange)="handlePasswordsMatching()"
       formControlName="password"
       [toggleMask]="true"
       [class]="
@@ -121,6 +121,7 @@
 
     <p-password
       formControlName="rePassword"
+      (ngModelChange)="test()"
       [toggleMask]="true"
       [class]="
         registerForm.get('rePassword')?.invalid &&
@@ -149,7 +150,7 @@
     </div>
 
     <app-auth-button
-      (actionToParent)="receiveBtnAction($event)"
+      (actionToParent)="register(registerForm.value)"
       btnLabel="Create Account "
       [isDisabled]="!registerForm.valid"
     ></app-auth-button>

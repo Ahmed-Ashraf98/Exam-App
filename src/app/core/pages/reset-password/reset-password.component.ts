@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PasswordModule } from 'primeng/password';
 import { InputTextModule } from 'primeng/inputtext';
@@ -10,9 +10,9 @@ import { InputValidationAlertComponent } from '../../../shared/components/busine
 import { AuthApiManagerService } from 'auth-api-manager';
 import { ToastComponent } from '../../../shared/components/ui/toast/toast.component';
 import { EmailSignal } from '../../../features/services/email.signal.service';
-
+import { FormUtilsService } from '../../../shared/services/form-utils-service.service';
 @Component({
-  selector: 'app-forgot-password',
+  selector: 'app-reset-password',
   standalone: true,
   imports: [
     ReactiveFormsModule,
@@ -22,29 +22,49 @@ import { EmailSignal } from '../../../features/services/email.signal.service';
     InputValidationAlertComponent,
     ToastComponent,
   ],
-  templateUrl: './forgot-password.component.html',
-  styleUrl: './forgot-password.component.scss',
+  templateUrl: './reset-password.component.html',
+  styleUrl: './reset-password.component.scss',
 })
-export class ForgotPasswordComponent {
+export class ResetPasswordComponent implements OnInit {
   private readonly _AuthApiManagerService = inject(AuthApiManagerService);
   private readonly _Toaster = new ToastComponent();
   private readonly _Router = inject(Router);
   private readonly _EmailSignal = inject(EmailSignal);
-  forgotPassForm = new FormsManagerComponent(formTypes.ForgotPass).getForm();
+  resetPassForm = new FormsManagerComponent(formTypes.ResetPass).getForm();
+  private readonly _FormUtilsService = inject(FormUtilsService);
 
-  sendOTP(data: any) {
-    this._AuthApiManagerService.forgotPassword(data).subscribe({
+  ngOnInit(): void {
+    this.setTheEmail();
+    this._FormUtilsService.disableRePassword(this.resetPassForm);
+  }
+
+  handlePasswordsMatching() {
+    this._FormUtilsService.checkPassword(this.resetPassForm);
+  }
+
+  setTheEmail() {
+    let email = this._EmailSignal.getData();
+    console.log('The email..........> ', email);
+    this.resetPassForm.get('email')?.setValue(email);
+  }
+
+  resetPass(data: any) {
+    data = {
+      email: data.email,
+      newPassword: data.password,
+    };
+    console.log(data);
+    this._AuthApiManagerService.resetPassword(data).subscribe({
       next: (res) => {
         let severity = '';
         let title = '';
         let message = '';
 
         if (res.message == 'success') {
-          this._EmailSignal.setData(data.email);
           severity = 'success';
-          title = 'OTP Sent';
+          title = 'Password Changed!';
           message = res.info;
-          this._Router.navigate(['auth/verifyCode']);
+          this._Router.navigate(['auth/signin']);
         } else {
           let errorMsg = res.error.message;
           severity = 'error';

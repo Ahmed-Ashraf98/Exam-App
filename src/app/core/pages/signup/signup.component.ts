@@ -9,6 +9,8 @@ import { formTypes } from '../../../shared/enums/formTypes';
 import { InputValidationAlertComponent } from '../../../shared/components/business/input-validation-alert/input-validation-alert.component';
 import { AuthApiManagerService } from 'auth-api-manager';
 import { ToastComponent } from '../../../shared/components/ui/toast/toast.component';
+import { FormUtilsService } from '../../../shared/services/form-utils-service.service';
+import { EmailSignal } from '../../../features/services/email.signal.service';
 @Component({
   selector: 'app-signup',
   standalone: true,
@@ -29,35 +31,27 @@ export class SignupComponent implements OnInit {
   private readonly _AuthApiManagerService = inject(AuthApiManagerService);
   private readonly _Toaster = new ToastComponent();
   private readonly _Router = inject(Router);
+  private readonly _EmailSignal = inject(EmailSignal);
   registerForm = new FormsManagerComponent(formTypes.Register).getForm();
+  private readonly _FormUtilsService = inject(FormUtilsService);
 
-  receiveBtnAction(data: MouseEvent) {
-    // Start Calling API
-  }
   ngOnInit(): void {
-    this.disableRePassword();
+    this._EmailSignal.setData(null);
+    this._FormUtilsService.disableRePassword(this.registerForm);
   }
 
-  checkPassword() {
-    console.log('Checking Password .....');
-    if (this.registerForm.get('password')?.valid) {
-      this.enableRePassword();
-    } else {
-      this.disableRePassword();
-      this.clearRePassword();
-    }
+  handlePasswordsMatching() {
+    this._FormUtilsService.checkPassword(this.registerForm);
   }
 
-  disableRePassword() {
-    this.registerForm.get('rePassword')?.disable();
-  }
-
-  enableRePassword() {
-    this.registerForm.get('rePassword')?.enable();
-  }
-
-  clearRePassword() {
-    this.registerForm.get('rePassword')?.setValue('');
+  test() {
+    console.log(this.registerForm);
+    console.log(
+      this.registerForm.get('rePassword')?.touched ||
+        this.registerForm.get('rePassword')?.dirty
+    );
+    console.log(this.registerForm.getError('mismatch'));
+    console.log('rePassword' === 'rePassword');
   }
 
   register(data: any) {

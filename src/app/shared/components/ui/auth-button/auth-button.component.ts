@@ -11,9 +11,9 @@ import { ButtonModule } from 'primeng/button';
 export class AuthButtonComponent {
   @Input() btnLabel!: string;
   @Input() isDisabled!: boolean;
-  @Output() actionToParent: EventEmitter<MouseEvent> = new EventEmitter();
+  @Output() actionToParent: EventEmitter<any> = new EventEmitter();
 
-  runAction(event: MouseEvent) {
-    this.actionToParent.emit(event);
+  runAction() {
+    this.actionToParent.emit();
   }
 }

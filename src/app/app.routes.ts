@@ -32,6 +32,22 @@ export const routes: Routes = [
             (c) => c.ForgotPasswordComponent
           ),
       },
+
+      {
+        path: 'verifyCode',
+        loadComponent: () =>
+          import('./core/pages/verify-code/verify-code.component').then(
+            (c) => c.VerifyCodeComponent
+          ),
+      },
+
+      {
+        path: 'resetPass',
+        loadComponent: () =>
+          import('./core/pages/reset-password/reset-password.component').then(
+            (c) => c.ResetPasswordComponent
+          ),
+      },
     ],
   },
 ];
