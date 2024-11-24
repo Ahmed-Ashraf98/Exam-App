@@ -1,0 +1,133 @@
+.auth-layout {
+  min-height: 100vh;
+}
+
+.auth-layout-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+// ================================== Start Side Design ===============================
+.start-side {
+  background: #f0f4fc;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+  box-shadow: 0px 5px 100px 0px #0000001a;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 40px;
+}
+
+.welcome-msg {
+  font-family: Poppins;
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 75px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+
+.start-side img {
+  max-width: 100%;
+}
+
+.org-name {
+  font-family: Poppins;
+  font-size: 60px;
+  font-weight: 700;
+  line-height: 90px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: var(--main-dark-color);
+}
+
+.org-desc {
+  width: 70%;
+}
+
+// ================================== End Side Design ===============================
+
+.end-side {
+  overflow: hidden;
+  padding: 20px;
+  flex-grow: 1;
+}
+
+.sign-in-btn {
+  color: var(--main-color);
+  margin: 0 8px;
+  font-weight: 600;
+}
+
+.register-btn {
+  color: var(--main-color);
+  margin: 0 8px;
+  padding: 10px 15px;
+  border-radius: 15px;
+  border: 1px solid #e0e0e9;
+  box-shadow: 0px 10px 30px 0px #4461f20d;
+}
+
+.auth-forms {
+  height: 100%;
+}
+.auth-forms-layout {
+  height: 100%;
+  max-width: 800px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.auth-form-layout-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px 30px;
+  flex-grow: 1;
+}
+
+.or-separator-line {
+  position: relative;
+  margin: 20px 0;
+  text-align: center;
+  color: #6c737f;
+
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: calc(50% - 80px);
+    border: 1px #e7e7e7 solid;
+  }
+
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: calc(50% - 80px);
+
+    border: 1px #e7e7e7 solid;
+  }
+}
+
+.sso-btns-group {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 16px 0;
+  justify-content: center;
+  text-align: center;
+}

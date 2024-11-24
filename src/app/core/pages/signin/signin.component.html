@@ -1,0 +1,54 @@
+<div class="auth-custom-form">
+  <h3 class="form-title">Sign in</h3>
+  <form [formGroup]="signinForm" (ngSubmit)="login(signinForm.value)">
+    <input
+      type="email"
+      pInputText
+      [class]="
+        signinForm.get('email')?.invalid &&
+        (signinForm.get('email')?.touched || signinForm.get('email')?.dirty)
+          ? 'ng-invalid ng-dirty'
+          : ''
+      "
+      formControlName="email"
+      placeholder="Enter Email"
+      variant="filled"
+    />
+
+    <app-input-validation-alert
+      [form]="signinForm"
+      inputName="email"
+    ></app-input-validation-alert>
+    <!--  ng-invalid ng-dirty -->
+    <p-password
+      formControlName="password"
+      [toggleMask]="true"
+      [class]="
+        signinForm.get('password')?.invalid &&
+        (signinForm.get('password')?.touched ||
+          signinForm.get('password')?.dirty)
+          ? 'p-fluid ng-invalid ng-dirty'
+          : 'p-fluid'
+      "
+      placeholder="Password"
+      variant="filled"
+    />
+    <app-input-validation-alert
+      [form]="signinForm"
+      inputName="password"
+    ></app-input-validation-alert>
+    <a
+      class="auth-option-link"
+      routerLink="../forgotPassword"
+      routerLinkActive="active"
+      >Recover Password ?</a
+    >
+
+    <app-auth-button
+      (actionToParent)="receiveBtnAction($event)"
+      btnLabel="Sign In"
+      [isDisabled]="!signinForm.valid"
+    ></app-auth-button>
+  </form>
+  <app-toast></app-toast>
+</div>

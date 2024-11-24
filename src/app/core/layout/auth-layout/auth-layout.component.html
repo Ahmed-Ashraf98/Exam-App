@@ -1,0 +1,60 @@
+<div class="auth-layout">
+  <div class="auth-layout-wrapper">
+    <div class="start-side">
+      <div class="group-1">
+        <h2 class="welcome-msg">Welcome to</h2>
+        <h1 class="org-name">Elevate</h1>
+        <p class="org-desc">
+          Quidem autem voluptatibus qui quaerat aspernatur architecto natus
+        </p>
+      </div>
+      <div class="group-2">
+        <img src="/assets/images/bro.png" alt="Person writing" />
+      </div>
+    </div>
+
+    <div class="end-side">
+      <nav class="auth-nav flex justify-content-end align-items-center">
+        <div class="lang-switcher">
+          <p-toast />
+          <p-splitButton
+            label="{{ currentLang }}"
+            [model]="items"
+            text
+            (onClick)="updateLang(otherLang)"
+          />
+        </div>
+        <a class="sign-in-btn" routerLink="signin" routerLinkActive="active"
+          >Sign In</a
+        >
+        <a class="register-btn" routerLink="register" routerLinkActive="active"
+          >Register</a
+        >
+      </nav>
+
+      <div class="auth-forms-layout">
+        <div class="auth-form-layout-wrapper">
+          <router-outlet></router-outlet>
+
+          <div class="or-separator-line">
+            <span>Or Continue with</span>
+          </div>
+          <div class="sso-btns-group">
+            <app-sso-button
+              imgUrl="/assets/images/google-logo.png"
+            ></app-sso-button>
+            <app-sso-button
+              imgUrl="/assets/images/twitter-logo.png"
+            ></app-sso-button>
+            <app-sso-button
+              imgUrl="/assets/images/fb-logo.png"
+            ></app-sso-button>
+            <app-sso-button
+              imgUrl="/assets/images/apple-logo.png"
+            ></app-sso-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

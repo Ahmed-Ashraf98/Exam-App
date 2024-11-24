@@ -1,0 +1,43 @@
+@if(form.get(inputName)?.invalid && (form.get(inputName)?.touched ||
+form.get(inputName)?.dirty )) {
+<!-- Validation Start -->
+@if(form.get(inputName)?.hasError('required')){
+<div class="card">
+  <p-messages
+    [value]="[{ severity: 'error', detail: requiredErrorMessage }]"
+    [enableService]="false"
+    [closable]="false"
+  />
+</div>
+
+} @if(form.get(inputName)?.hasError('email')){
+<div class="card">
+  <p-messages
+    [value]="[{ severity: 'error', detail: emailErrorMessage }]"
+    [enableService]="false"
+    [closable]="false"
+  />
+</div>
+
+} @if(form.get(inputName)?.hasError('pattern')){
+<div class="card">
+  <p-messages
+    [value]="[{ severity: 'error', detail: patternErrorMessage }]"
+    [enableService]="false"
+    [closable]="false"
+  />
+</div>
+
+}@else if (form.get(inputName)?.touched && form.getError("mismatch") &&
+inputName == "rePassword") {
+<div class="card">
+  <p-messages
+    [value]="[{ severity: 'error', detail: 'The Passwords doesn\'t match' }]"
+    [enableService]="false"
+    [closable]="false"
+  />
+</div>
+}
+
+<!-- End -->
+}
