@@ -2,9 +2,9 @@
 @import "primeicons/primeicons.css";
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
+@import "primeflex/primeflex.scss";
 
 /* ================= Load Fonts =======================*/
-
 @font-face {
   font-family: Poppins;
   src: url("/assets/fonts/Poppins/Poppins-Light.ttf");
@@ -105,46 +105,15 @@ input {
   text-align: center;
 }
 
-.flex {
-  display: flex;
-}
-
-.flex-wrap {
-  flex-wrap: wrap;
-}
-
-.flex-col {
-  flex-direction: column;
-}
-
-.justify-content-center {
-  justify-content: center;
-}
-
-.justify-content-end {
-  justify-content: end;
-}
-
-.justify-content-between {
-  justify-content: space-between;
-}
-
-.align-items-center {
-  align-items: center;
-}
-
 // ========================= Forms Design ======================
 
 .auth-custom-form {
-  display: flex;
-  flex-direction: column;
   & form {
     display: flex;
     flex-direction: column;
     & input {
       margin: 16px 0;
     }
-
     & input:focus {
       border: 2px solid #3364fd;
     }

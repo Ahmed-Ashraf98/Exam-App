@@ -1,6 +1,6 @@
 <div class="auth-layout">
-  <div class="auth-layout-wrapper">
-    <div class="start-side">
+  <div class="auth-layout-wrapper flex flex-wrap">
+    <div class="start-side flex flex-column justify-content-evenly">
       <div class="group-1">
         <h2 class="welcome-msg">Welcome to</h2>
         <h1 class="org-name">Elevate</h1>
@@ -14,7 +14,9 @@
     </div>
 
     <div class="end-side">
-      <nav class="auth-nav flex justify-content-end align-items-center">
+      <nav
+        class="auth-nav flex flex-row flex-wrap justify-content-end align-items-center"
+      >
         <div class="lang-switcher">
           <p-toast />
           <p-splitButton
@@ -24,23 +26,32 @@
             (onClick)="updateLang(otherLang)"
           />
         </div>
-        <a class="sign-in-btn" routerLink="signin" routerLinkActive="active"
+        <a
+          class="sign-in-btn block"
+          routerLink="signin"
+          routerLinkActive="active"
           >Sign In</a
         >
-        <a class="register-btn" routerLink="register" routerLinkActive="active"
+        <a
+          class="register-btn block"
+          routerLink="register"
+          routerLinkActive="active"
           >Register</a
         >
       </nav>
 
-      <div class="auth-forms-layout">
-        <div class="auth-form-layout-wrapper">
-          <div class="auth-custom-form">
+      <div class="auth-forms-layout flex flex-column justify-content-around">
+        <div
+          class="auth-form-layout-wrapper flex flex-column justify-content-center flex-wrap flex-grow-1"
+        >
+          <!-- TODO : Fix responive issue with flex when screen is mobile -->
+          <div class="auth-custom-form flex flex-column">
             <router-outlet></router-outlet>
           </div>
           <div class="or-separator-line">
             <span>Or Continue with</span>
           </div>
-          <div class="sso-btns-group">
+          <div class="sso-btns-group flex justify-content-center flex-wrap">
             <app-sso-button
               imgUrl="/assets/images/google-logo.png"
             ></app-sso-button>

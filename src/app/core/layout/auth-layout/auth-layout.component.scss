@@ -4,9 +4,7 @@
 
 .auth-layout-wrapper {
   min-height: 100vh;
-  display: flex;
-  align-items: stretch;
-  flex-wrap: wrap;
+  // align-items: stretch;
 }
 
 // ================================== Start Side Design ===============================
@@ -15,10 +13,11 @@
   border-top-right-radius: 100px;
   border-bottom-right-radius: 100px;
   box-shadow: 0px 5px 100px 0px #0000001a;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
   padding-left: 30px;
+}
+
+::ng-deep .lang-switcher .p-button {
+  padding: 0;
 }
 
 .welcome-msg {
@@ -53,7 +52,7 @@
 // ================================== End Side Design ===============================
 
 .end-side {
-  overflow: hidden;
+  // overflow: hidden;
   padding: 20px;
   flex-grow: 1;
 }
@@ -80,18 +79,10 @@
   height: 100%;
   max-width: 800px;
   margin: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
 }
 
 .auth-form-layout-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: center;
   padding: 20px 30px;
-  flex-grow: 1;
 }
 
 .or-separator-line {
@@ -125,9 +116,33 @@
 }
 
 .sso-btns-group {
-  display: flex;
-  flex-wrap: wrap;
   padding: 16px 0;
-  justify-content: center;
   text-align: center;
+}
+
+@media only screen and (max-width: 345px) {
+  nav.auth-nav {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-direction: column !important;
+  }
+
+  .end-side {
+    padding: 10px;
+    margin-top: 50px;
+  }
+  .auth-layout-wrapper,
+  .auth-form-layout-wrapper,
+  .auth-forms-layout,
+  .auth-custom-form {
+    padding: 0;
+    display: block !important;
+  }
+}
+
+@media only screen and (max-width: 990px) {
+  .start-side {
+    display: none !important;
+  }
 }
