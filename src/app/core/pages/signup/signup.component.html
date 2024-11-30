@@ -1,159 +1,158 @@
-<div class="auth-custom-form">
-  <h3 class="form-title">Sign Up</h3>
-  <form [formGroup]="registerForm">
-    <input
-      type="text"
-      pInputText
-      [class]="
-        registerForm.get('username')?.invalid &&
-        (registerForm.get('username')?.touched ||
-          registerForm.get('username')?.dirty)
-          ? 'ng-invalid ng-dirty'
-          : ''
-      "
-      formControlName="username"
-      placeholder="User Name"
-      variant="filled"
-    />
+<h3 class="form-title">Sign Up</h3>
+<form [formGroup]="registerForm">
+  <input
+    type="text"
+    pInputText
+    [class]="
+      registerForm.get('username')?.invalid &&
+      (registerForm.get('username')?.touched ||
+        registerForm.get('username')?.dirty)
+        ? 'ng-invalid ng-dirty'
+        : ''
+    "
+    formControlName="username"
+    placeholder="User Name"
+    variant="filled"
+  />
 
-    <app-input-validation-alert
-      [form]="registerForm"
-      inputName="username"
-    ></app-input-validation-alert>
+  <app-input-validation-alert
+    [form]="registerForm"
+    inputName="username"
+  ></app-input-validation-alert>
 
-    <input
-      type="text"
-      pInputText
-      [class]="
-        registerForm.get('firstName')?.invalid &&
-        (registerForm.get('firstName')?.touched ||
-          registerForm.get('firstName')?.dirty)
-          ? 'ng-invalid ng-dirty'
-          : ''
-      "
-      formControlName="firstName"
-      placeholder="First Name"
-      variant="filled"
-    />
+  <input
+    type="text"
+    pInputText
+    [class]="
+      registerForm.get('firstName')?.invalid &&
+      (registerForm.get('firstName')?.touched ||
+        registerForm.get('firstName')?.dirty)
+        ? 'ng-invalid ng-dirty'
+        : ''
+    "
+    formControlName="firstName"
+    placeholder="First Name"
+    variant="filled"
+  />
 
-    <app-input-validation-alert
-      [form]="registerForm"
-      inputName="firstName"
-    ></app-input-validation-alert>
+  <app-input-validation-alert
+    [form]="registerForm"
+    inputName="firstName"
+  ></app-input-validation-alert>
 
-    <input
-      type="text"
-      pInputText
-      [class]="
-        registerForm.get('lastName')?.invalid &&
-        (registerForm.get('lastName')?.touched ||
-          registerForm.get('lastName')?.dirty)
-          ? 'ng-invalid ng-dirty'
-          : ''
-      "
-      formControlName="lastName"
-      placeholder="Last Name"
-      variant="filled"
-    />
+  <input
+    type="text"
+    pInputText
+    [class]="
+      registerForm.get('lastName')?.invalid &&
+      (registerForm.get('lastName')?.touched ||
+        registerForm.get('lastName')?.dirty)
+        ? 'ng-invalid ng-dirty'
+        : ''
+    "
+    formControlName="lastName"
+    placeholder="Last Name"
+    variant="filled"
+  />
 
-    <app-input-validation-alert
-      [form]="registerForm"
-      inputName="lastName"
-    ></app-input-validation-alert>
+  <app-input-validation-alert
+    [form]="registerForm"
+    inputName="lastName"
+  ></app-input-validation-alert>
 
-    <input
-      type="email"
-      pInputText
-      [class]="
-        registerForm.get('email')?.invalid &&
-        (registerForm.get('email')?.touched || registerForm.get('email')?.dirty)
-          ? 'ng-invalid ng-dirty'
-          : ''
-      "
-      formControlName="email"
-      placeholder="Enter Email"
-      variant="filled"
-    />
+  <input
+    type="email"
+    pInputText
+    [class]="
+      registerForm.get('email')?.invalid &&
+      (registerForm.get('email')?.touched || registerForm.get('email')?.dirty)
+        ? 'ng-invalid ng-dirty'
+        : ''
+    "
+    formControlName="email"
+    placeholder="Enter Email"
+    variant="filled"
+  />
 
-    <app-input-validation-alert
-      [form]="registerForm"
-      inputName="email"
-    ></app-input-validation-alert>
+  <app-input-validation-alert
+    [form]="registerForm"
+    inputName="email"
+  ></app-input-validation-alert>
 
-    <input
-      type="text"
-      pInputText
-      [class]="
-        registerForm.get('phone')?.invalid &&
-        (registerForm.get('phone')?.touched || registerForm.get('phone')?.dirty)
-          ? 'ng-invalid ng-dirty'
-          : ''
-      "
-      formControlName="phone"
-      placeholder="Enter Phone"
-      variant="filled"
-    />
+  <input
+    type="text"
+    pInputText
+    [class]="
+      registerForm.get('phone')?.invalid &&
+      (registerForm.get('phone')?.touched || registerForm.get('phone')?.dirty)
+        ? 'ng-invalid ng-dirty'
+        : ''
+    "
+    formControlName="phone"
+    placeholder="Enter Phone"
+    variant="filled"
+  />
 
-    <app-input-validation-alert
-      [form]="registerForm"
-      inputName="phone"
-    ></app-input-validation-alert>
+  <app-input-validation-alert
+    [form]="registerForm"
+    inputName="phone"
+  ></app-input-validation-alert>
 
-    <p-password
-      (ngModelChange)="handlePasswordsMatching()"
-      formControlName="password"
-      [toggleMask]="true"
-      [class]="
-        registerForm.get('password')?.invalid &&
-        (registerForm.get('password')?.touched ||
-          registerForm.get('password')?.dirty)
-          ? 'p-fluid ng-invalid ng-dirty'
-          : 'p-fluid'
-      "
-      placeholder="Password"
-      variant="filled"
-    />
+  <p-password
+    (ngModelChange)="handlePasswordsMatching()"
+    formControlName="password"
+    [toggleMask]="true"
+    [class]="
+      registerForm.get('password')?.invalid &&
+      (registerForm.get('password')?.touched ||
+        registerForm.get('password')?.dirty)
+        ? 'p-fluid ng-invalid ng-dirty'
+        : 'p-fluid'
+    "
+    placeholder="Password"
+    variant="filled"
+  />
 
-    <app-input-validation-alert
-      [form]="registerForm"
-      inputName="password"
-    ></app-input-validation-alert>
+  <app-input-validation-alert
+    [form]="registerForm"
+    inputName="password"
+  ></app-input-validation-alert>
 
-    <p-password
-      formControlName="rePassword"
-      (ngModelChange)="test()"
-      [toggleMask]="true"
-      [class]="
-        registerForm.get('rePassword')?.invalid &&
-        (registerForm.get('rePassword')?.touched ||
-          registerForm.get('rePassword')?.dirty)
-          ? 'p-fluid ng-invalid ng-dirty'
-          : 'p-fluid'
-      "
-      placeholder="Confirm Password"
-      variant="filled"
-    />
-    <app-input-validation-alert
-      [form]="registerForm"
-      inputName="rePassword"
-    ></app-input-validation-alert>
+  <p-password
+    formControlName="rePassword"
+    (ngModelChange)="test()"
+    [toggleMask]="true"
+    [class]="
+      registerForm.get('rePassword')?.invalid &&
+      (registerForm.get('rePassword')?.touched ||
+        registerForm.get('rePassword')?.dirty)
+        ? 'p-fluid ng-invalid ng-dirty'
+        : 'p-fluid'
+    "
+    placeholder="Confirm Password"
+    variant="filled"
+  />
+  <app-input-validation-alert
+    [form]="registerForm"
+    inputName="rePassword"
+  ></app-input-validation-alert>
 
-    <div class="mb-40 text-center">
-      <span>Already have an account?</span>
-      <a
-        class="auth-option-link"
-        routerLink="../signin"
-        routerLinkActive="active"
-      >
-        Login</a
-      >
-    </div>
+  <div class="mb-40 text-center">
+    <span>Already have an account?</span>
+    <a
+      class="auth-option-link"
+      routerLink="../signin"
+      routerLinkActive="active"
+    >
+      Login</a
+    >
+  </div>
 
-    <app-auth-button
-      (actionToParent)="register(registerForm.value)"
-      btnLabel="Create Account "
-      [isDisabled]="!registerForm.valid"
-    ></app-auth-button>
-  </form>
-  <app-toast></app-toast>
-</div>
+  <app-auth-button
+    (actionToParent)="register(registerForm.value)"
+    btnLabel="Create Account "
+    [isDisabled]="!registerForm.valid"
+    [isLoading]="isSubmitted"
+  ></app-auth-button>
+</form>
+<app-toast></app-toast>

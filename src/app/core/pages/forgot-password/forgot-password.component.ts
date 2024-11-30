@@ -31,10 +31,11 @@ export class ForgotPasswordComponent {
   private readonly _Router = inject(Router);
   private readonly _EmailSignal = inject(EmailSignal);
   forgotPassForm = new FormsManagerComponent(formTypes.ForgotPass).getForm();
-
+  isSubmitted = false;
   sendOTP(data: any) {
     this._AuthApiManagerService.forgotPassword(data).subscribe({
       next: (res) => {
+        this.isSubmitted = false;
         let severity = '';
         let title = '';
         let message = '';

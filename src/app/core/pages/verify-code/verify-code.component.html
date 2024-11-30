@@ -1,38 +1,37 @@
-<div class="auth-custom-form">
-  <h3 class="form-title">Verify The OTP Code</h3>
-  <form [formGroup]="verifyCodeForm">
-    <input
-      type="text"
-      pInputText
-      [class]="
-        verifyCodeForm.get('resetCode')?.invalid &&
-        (verifyCodeForm.get('resetCode')?.touched ||
-          verifyCodeForm.get('resetCode')?.dirty)
-          ? 'ng-invalid ng-dirty'
-          : ''
-      "
-      formControlName="resetCode"
-      placeholder="Enter OTP Code"
-      variant="filled"
-    />
+<h3 class="form-title">Verify The OTP Code</h3>
+<form [formGroup]="verifyCodeForm">
+  <input
+    type="text"
+    pInputText
+    [class]="
+      verifyCodeForm.get('resetCode')?.invalid &&
+      (verifyCodeForm.get('resetCode')?.touched ||
+        verifyCodeForm.get('resetCode')?.dirty)
+        ? 'ng-invalid ng-dirty'
+        : ''
+    "
+    formControlName="resetCode"
+    placeholder="Enter OTP Code"
+    variant="filled"
+  />
 
-    <app-input-validation-alert
-      [form]="verifyCodeForm"
-      inputName="resetCode"
-    ></app-input-validation-alert>
+  <app-input-validation-alert
+    [form]="verifyCodeForm"
+    inputName="resetCode"
+  ></app-input-validation-alert>
 
-    <!-- <a
+  <!-- <a
       class="auth-option-link"
       routerLink="../forgotPassword"
       routerLinkActive="active"
       >Recover Password ?</a
     > -->
 
-    <app-auth-button
-      (actionToParent)="verifyCode(verifyCodeForm.value)"
-      btnLabel="Verify OTP"
-      [isDisabled]="!verifyCodeForm.valid"
-    ></app-auth-button>
-  </form>
-  <app-toast></app-toast>
-</div>
+  <app-auth-button
+    (actionToParent)="verifyCode(verifyCodeForm.value)"
+    btnLabel="Verify OTP"
+    [isDisabled]="!verifyCodeForm.valid"
+    [isLoading]="isSubmitted"
+  ></app-auth-button>
+</form>
+<app-toast></app-toast>

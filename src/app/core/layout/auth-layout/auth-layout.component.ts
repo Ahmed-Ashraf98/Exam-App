@@ -1,4 +1,3 @@
-import { NgStyle } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MenuItem, MessageService, PrimeNGConfig } from 'primeng/api';
 import { SplitButtonModule } from 'primeng/splitbutton';
@@ -29,10 +28,7 @@ export class AuthLayoutComponent implements OnInit {
 
   items!: MenuItem[];
 
-  constructor(
-    private messageService: MessageService,
-    private primengConfig: PrimeNGConfig
-  ) {
+  constructor(private primengConfig: PrimeNGConfig) {
     this.setLangList();
   }
 

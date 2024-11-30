@@ -27,10 +27,11 @@ export class VerifyCodeComponent {
   private readonly _Toaster = new ToastComponent();
   private readonly _Router = inject(Router);
   verifyCodeForm = new FormsManagerComponent(formTypes.VerifyCode).getForm();
-
+  isSubmitted = false;
   verifyCode(data: any) {
     this._AuthApiManagerService.verifyCode(data).subscribe({
       next: (res) => {
+        this.isSubmitted = false;
         let severity = '';
         let title = '';
         let message = '';

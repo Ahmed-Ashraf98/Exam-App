@@ -5,6 +5,9 @@
     "paths": {
       "auth-api-manager": [
         "./dist/auth-api-manager"
+      ],
+      "auth-forms": [
+        "./dist/auth-forms"
       ]
     },
     "outDir": "./dist/out-tsc",

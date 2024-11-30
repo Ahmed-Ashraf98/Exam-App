@@ -123,6 +123,39 @@
           }
         }
       }
+    },
+    "auth-forms": {
+      "projectType": "library",
+      "root": "projects/auth-forms",
+      "sourceRoot": "projects/auth-forms/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/auth-forms/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/auth-forms/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/auth-forms/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/auth-forms/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
     }
   }
 }

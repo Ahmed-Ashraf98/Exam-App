@@ -15,6 +15,8 @@ import { formTypes } from '../../../enums/formTypes';
   styleUrl: './forms-manager.component.scss',
 })
 export class FormsManagerComponent {
+  // formFields_2 = <string, {}>[] = [];
+
   formType: formTypes;
 
   formsFields = {

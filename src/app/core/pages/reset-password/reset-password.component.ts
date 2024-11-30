@@ -32,6 +32,7 @@ export class ResetPasswordComponent implements OnInit {
   private readonly _EmailSignal = inject(EmailSignal);
   resetPassForm = new FormsManagerComponent(formTypes.ResetPass).getForm();
   private readonly _FormUtilsService = inject(FormUtilsService);
+  isSubmitted = false;
 
   ngOnInit(): void {
     this.setTheEmail();
@@ -56,6 +57,8 @@ export class ResetPasswordComponent implements OnInit {
     console.log(data);
     this._AuthApiManagerService.resetPassword(data).subscribe({
       next: (res) => {
+        this.isSubmitted = false;
+
         let severity = '';
         let title = '';
         let message = '';

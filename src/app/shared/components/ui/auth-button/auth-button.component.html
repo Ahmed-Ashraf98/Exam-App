@@ -3,6 +3,11 @@
   pRipple
   (click)="runAction()"
   [disabled]="isDisabled"
-  label="{{ btnLabel }}"
-  class="p-button-primary"
-></button>
+  class="p-button-primary justify-content-center"
+>
+  @if (isLoading) {
+  <app-loading></app-loading>
+  }@else {
+  <span>{{ btnLabel }}</span>
+  }
+</button>

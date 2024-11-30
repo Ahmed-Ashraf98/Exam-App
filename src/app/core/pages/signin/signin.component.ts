@@ -29,14 +29,15 @@ export class SigninComponent {
   private readonly _AuthApiManagerService = inject(AuthApiManagerService);
   private readonly _Toaster = new ToastComponent();
   signinForm = new FormsManagerComponent(formTypes.Login).getForm();
-
+  isSubmitted = false;
   login(data: any) {
+    this.isSubmitted = true;
     this._AuthApiManagerService.login(data).subscribe({
       next: (res) => {
         let severity = '';
         let title = '';
         let message = '';
-
+        this.isSubmitted = false;
         if (res.message == 'success') {
           severity = 'success';
           title = 'Welcome!';

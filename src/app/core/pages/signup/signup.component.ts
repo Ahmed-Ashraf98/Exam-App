@@ -34,7 +34,7 @@ export class SignupComponent implements OnInit {
   private readonly _EmailSignal = inject(EmailSignal);
   registerForm = new FormsManagerComponent(formTypes.Register).getForm();
   private readonly _FormUtilsService = inject(FormUtilsService);
-
+  isSubmitted = false;
   ngOnInit(): void {
     this._EmailSignal.setData(null);
     this._FormUtilsService.disableRePassword(this.registerForm);
@@ -57,6 +57,8 @@ export class SignupComponent implements OnInit {
   register(data: any) {
     this._AuthApiManagerService.register(data).subscribe({
       next: (res) => {
+        this.isSubmitted = false;
+
         let severity = '';
         let title = '';
         let message = '';
