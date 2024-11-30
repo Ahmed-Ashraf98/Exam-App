@@ -57,9 +57,9 @@ export class SignupComponent implements OnInit {
 
   register(data: any) {
     this.isSubmitted = true;
-
     this._AuthApiManagerService.register(baseUrl, data).subscribe({
       next: (res) => {
+        this.isSubmitted = false;
         let severity = '';
         let title = '';
         let message = '';

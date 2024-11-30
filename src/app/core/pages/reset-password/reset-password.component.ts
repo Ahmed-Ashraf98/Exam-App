@@ -51,6 +51,7 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   resetPass(data: any) {
+    this.isSubmitted = true;
     data = {
       email: data.email,
       newPassword: data.password,

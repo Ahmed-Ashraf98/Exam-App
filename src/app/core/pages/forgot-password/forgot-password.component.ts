@@ -35,6 +35,7 @@ export class ForgotPasswordComponent {
   isSubmitted = false;
 
   sendOTP(data: any) {
+    this.isSubmitted = true;
     this._AuthApiManagerService.forgotPassword(baseUrl, data).subscribe({
       next: (res) => {
         this.isSubmitted = false;

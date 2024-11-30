@@ -35,10 +35,10 @@ export class SigninComponent {
     this.isSubmitted = true;
     this._AuthApiManagerService.login(baseUrl, data).subscribe({
       next: (res) => {
+        this.isSubmitted = false;
         let severity = '';
         let title = '';
         let message = '';
-        this.isSubmitted = false;
         if (res.message == 'success') {
           severity = 'success';
           title = 'Welcome!';
