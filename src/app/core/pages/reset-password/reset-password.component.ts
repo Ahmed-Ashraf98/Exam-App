@@ -2,7 +2,6 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PasswordModule } from 'primeng/password';
 import { InputTextModule } from 'primeng/inputtext';
-import { AuthButtonComponent } from '../../../shared/components/ui/auth-button/auth-button.component';
 import { Router } from '@angular/router';
 import { FormsManagerComponent } from '../../../shared/components/business/forms-manager/forms-manager.component';
 import { formTypes } from '../../../shared/enums/formTypes';
@@ -12,6 +11,7 @@ import { ToastComponent } from '../../../shared/components/ui/toast/toast.compon
 import { EmailSignal } from '../../../features/services/email.signal.service';
 import { FormUtilsService } from '../../../shared/services/form-utils-service.service';
 import { baseUrl } from '../../environment/environment.prod';
+import { PrimaryButtonComponent } from '../../../shared/components/ui/primary-button/primary-button.component';
 @Component({
   selector: 'app-reset-password',
   standalone: true,
@@ -19,7 +19,7 @@ import { baseUrl } from '../../environment/environment.prod';
     ReactiveFormsModule,
     PasswordModule,
     InputTextModule,
-    AuthButtonComponent,
+    PrimaryButtonComponent,
     InputValidationAlertComponent,
     ToastComponent,
   ],

@@ -42,12 +42,12 @@
     >Recover Password ?</a
   >
 
-  <app-auth-button
+  <app-primary-button
     (actionToParent)="login(signinForm.value)"
     [isDisabled]="!signinForm.valid || isSubmitted"
     btnLabel="Login"
     [isLoading]="isSubmitted"
   >
-  </app-auth-button>
+  </app-primary-button>
 </form>
 <app-toast></app-toast>

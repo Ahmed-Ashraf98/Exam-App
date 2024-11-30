@@ -28,11 +28,11 @@
   }@else {
   <span class="resend-otp">Wait {{ displayOTPTime }} to re-send again</span>
   }
-  <app-auth-button
+  <app-primary-button
     (actionToParent)="verifyCode(verifyCodeForm.value)"
     btnLabel="Verify OTP"
     [isDisabled]="!verifyCodeForm.valid || isSubmitted"
     [isLoading]="isSubmitted"
-  ></app-auth-button>
+  ></app-primary-button>
 </form>
 <app-toast></app-toast>

@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AuthButtonComponent } from '../../../shared/components/ui/auth-button/auth-button.component';
+import { PrimaryButtonComponent } from '../../../shared/components/ui/primary-button/primary-button.component';
 import { Router } from '@angular/router';
 import { FormsManagerComponent } from '../../../shared/components/business/forms-manager/forms-manager.component';
 import { formTypes } from '../../../shared/enums/formTypes';
@@ -16,7 +16,7 @@ import { EmailSignal } from '../../../features/services/email.signal.service';
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    AuthButtonComponent,
+    PrimaryButtonComponent,
     InputTextModule,
     InputValidationAlertComponent,
     ToastComponent,

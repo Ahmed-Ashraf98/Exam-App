@@ -148,11 +148,11 @@
     >
   </div>
 
-  <app-auth-button
+  <app-primary-button
     (actionToParent)="register(registerForm.value)"
     btnLabel="Create Account "
     [isDisabled]="!registerForm.valid || isSubmitted"
     [isLoading]="isSubmitted"
-  ></app-auth-button>
+  ></app-primary-button>
 </form>
 <app-toast></app-toast>

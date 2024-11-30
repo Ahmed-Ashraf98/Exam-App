@@ -3,13 +3,13 @@ import { ButtonModule } from 'primeng/button';
 import { LoadingComponent } from '../loading/loading.component';
 
 @Component({
-  selector: 'app-auth-button',
+  selector: 'app-primary-button',
   standalone: true,
   imports: [ButtonModule, LoadingComponent],
-  templateUrl: './auth-button.component.html',
-  styleUrl: './auth-button.component.scss',
+  templateUrl: './primary-button.component.html',
+  styleUrl: './primary-button.component.scss',
 })
-export class AuthButtonComponent {
+export class PrimaryButtonComponent {
   @Input() btnLabel: string = '';
   @Input() isDisabled: boolean = false;
   @Input() isLoading: boolean = false;
