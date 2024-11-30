@@ -151,7 +151,7 @@
   <app-auth-button
     (actionToParent)="register(registerForm.value)"
     btnLabel="Create Account "
-    [isDisabled]="!registerForm.valid"
+    [isDisabled]="!registerForm.valid || isSubmitted"
     [isLoading]="isSubmitted"
   ></app-auth-button>
 </form>

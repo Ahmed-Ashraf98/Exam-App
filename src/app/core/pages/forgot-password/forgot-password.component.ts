@@ -10,6 +10,7 @@ import { InputValidationAlertComponent } from '../../../shared/components/busine
 import { AuthApiManagerService } from 'auth-api-manager';
 import { ToastComponent } from '../../../shared/components/ui/toast/toast.component';
 import { EmailSignal } from '../../../features/services/email.signal.service';
+import { baseUrl } from '../../environment/environment.prod';
 
 @Component({
   selector: 'app-forgot-password',
@@ -32,8 +33,9 @@ export class ForgotPasswordComponent {
   private readonly _EmailSignal = inject(EmailSignal);
   forgotPassForm = new FormsManagerComponent(formTypes.ForgotPass).getForm();
   isSubmitted = false;
+
   sendOTP(data: any) {
-    this._AuthApiManagerService.forgotPassword(data).subscribe({
+    this._AuthApiManagerService.forgotPassword(baseUrl, data).subscribe({
       next: (res) => {
         this.isSubmitted = false;
         let severity = '';

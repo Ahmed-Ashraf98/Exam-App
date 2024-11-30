@@ -11,6 +11,7 @@ import { AuthApiManagerService } from 'auth-api-manager';
 import { ToastComponent } from '../../../shared/components/ui/toast/toast.component';
 import { EmailSignal } from '../../../features/services/email.signal.service';
 import { FormUtilsService } from '../../../shared/services/form-utils-service.service';
+import { baseUrl } from '../../environment/environment.prod';
 @Component({
   selector: 'app-reset-password',
   standalone: true,
@@ -55,7 +56,7 @@ export class ResetPasswordComponent implements OnInit {
       newPassword: data.password,
     };
     console.log(data);
-    this._AuthApiManagerService.resetPassword(data).subscribe({
+    this._AuthApiManagerService.resetPassword(baseUrl, data).subscribe({
       next: (res) => {
         this.isSubmitted = false;
 

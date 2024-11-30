@@ -9,6 +9,7 @@ import { formTypes } from '../../../shared/enums/formTypes';
 import { InputValidationAlertComponent } from '../../../shared/components/business/input-validation-alert/input-validation-alert.component';
 import { AuthApiManagerService } from 'auth-api-manager';
 import { ToastComponent } from '../../../shared/components/ui/toast/toast.component';
+import { baseUrl } from '../../environment/environment.prod';
 @Component({
   selector: 'app-signin',
   standalone: true,
@@ -32,7 +33,7 @@ export class SigninComponent {
   isSubmitted = false;
   login(data: any) {
     this.isSubmitted = true;
-    this._AuthApiManagerService.login(data).subscribe({
+    this._AuthApiManagerService.login(baseUrl, data).subscribe({
       next: (res) => {
         let severity = '';
         let title = '';

@@ -20,17 +20,18 @@
     inputName="resetCode"
   ></app-input-validation-alert>
 
-  <!-- <a
-      class="auth-option-link"
-      routerLink="../forgotPassword"
-      routerLinkActive="active"
-      >Recover Password ?</a
-    > -->
+  @if (!isReSendCodeClicked){
+  <a role="button" (click)="resendOTP()" class="resend-otp cursor-pointer"
+    >Resend OTP</a
+  >
 
+  }@else {
+  <span class="resend-otp">Wait {{ displayOTPTime }} to re-send again</span>
+  }
   <app-auth-button
     (actionToParent)="verifyCode(verifyCodeForm.value)"
     btnLabel="Verify OTP"
-    [isDisabled]="!verifyCodeForm.valid"
+    [isDisabled]="!verifyCodeForm.valid || isSubmitted"
     [isLoading]="isSubmitted"
   ></app-auth-button>
 </form>

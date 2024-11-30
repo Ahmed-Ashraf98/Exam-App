@@ -11,6 +11,7 @@ import { AuthApiManagerService } from 'auth-api-manager';
 import { ToastComponent } from '../../../shared/components/ui/toast/toast.component';
 import { FormUtilsService } from '../../../shared/services/form-utils-service.service';
 import { EmailSignal } from '../../../features/services/email.signal.service';
+import { baseUrl } from '../../environment/environment.prod';
 @Component({
   selector: 'app-signup',
   standalone: true,
@@ -55,10 +56,10 @@ export class SignupComponent implements OnInit {
   }
 
   register(data: any) {
-    this._AuthApiManagerService.register(data).subscribe({
-      next: (res) => {
-        this.isSubmitted = false;
+    this.isSubmitted = true;
 
+    this._AuthApiManagerService.register(baseUrl, data).subscribe({
+      next: (res) => {
         let severity = '';
         let title = '';
         let message = '';
