@@ -7,7 +7,7 @@ import { InputValidationAlertComponent } from '../../../shared/components/busine
 import { AuthApiManagerService } from 'auth-api-manager';
 import { ToastComponent } from '../../../shared/components/ui/toast/toast.component';
 import { EmailSignal } from '../../../features/services/email.signal.service';
-import { FormUtilsService } from '../../../shared/services/form-utils-service.service';
+import { FormUtilsService } from 'auth-forms';
 import { baseUrl } from '../../environment/environment.prod';
 import { PrimaryButtonComponent } from '../../../shared/components/ui/primary-button/primary-button.component';
 import { AuthFormsService } from 'auth-forms';

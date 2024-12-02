@@ -7,7 +7,7 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { InputValidationAlertComponent } from '../../../shared/components/business/input-validation-alert/input-validation-alert.component';
 import { AuthApiManagerService } from 'auth-api-manager';
 import { ToastComponent } from '../../../shared/components/ui/toast/toast.component';
-import { FormUtilsService } from '../../../shared/services/form-utils-service.service';
+import { FormUtilsService } from 'auth-forms';
 import { EmailSignal } from '../../../features/services/email.signal.service';
 import { baseUrl } from '../../environment/environment.prod';
 import { AuthFormsService } from 'auth-forms';
