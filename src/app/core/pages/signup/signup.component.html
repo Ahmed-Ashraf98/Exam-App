@@ -99,7 +99,7 @@
   ></app-input-validation-alert>
 
   <p-password
-    (ngModelChange)="handlePasswordsMatching()"
+    (ngModelChange)="control_RePassword()"
     formControlName="password"
     [toggleMask]="true"
     [class]="
@@ -120,7 +120,6 @@
 
   <p-password
     formControlName="rePassword"
-    (ngModelChange)="test()"
     [toggleMask]="true"
     [class]="
       registerForm.get('rePassword')?.invalid &&

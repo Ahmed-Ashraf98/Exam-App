@@ -1,7 +1,8 @@
 export enum FormTypes {
-  Login,
-  Register,
-  VerifyCode,
-  ForgotPass,
-  ResetPass,
+  LOGIN,
+  REGISTER,
+  VERIFY_CODE,
+  FORGOT_PASS,
+  RESET_PASS,
+  CUSTOM,
 }

@@ -5,27 +5,30 @@ import { FormGroup } from '@angular/forms';
   providedIn: 'root',
 })
 export class FormUtilsService {
-  checkPassword(form: FormGroup): FormGroup {
-    console.log('Validating password and managing rePassword control...');
-    if (form.get('password')?.valid) {
-      this.enableRePassword(form);
-    } else {
-      this.disableRePassword(form);
-      this.clearRePassword(form);
-    }
-    console.log(form);
-    return form;
+  /**
+   * @summary This function disable the [ inputName ] input field
+   * @param form The Form object
+   * @param inputName The input name that you want to disable
+   */
+  disableField(form: FormGroup, inputName: string): void {
+    form.get(inputName)?.disable();
   }
 
-  disableRePassword(form: FormGroup): void {
-    form.get('rePassword')?.disable();
+  /**
+   * @summary This function enable the [ inputName ] input field
+   * @param form The Form object
+   * @param inputName The input name that you want to enable
+   */
+  enableField(form: FormGroup, inputName: string): void {
+    form.get(inputName)?.enable();
   }
 
-  enableRePassword(form: FormGroup): void {
-    form.get('rePassword')?.enable();
-  }
-
-  clearRePassword(form: FormGroup): void {
-    form.get('rePassword')?.setValue('');
+  /**
+   * @summary This function clear the value of the [ inputName ] input field
+   * @param form The Form object
+   * @param inputName The input name that you want to clear
+   */
+  clearField(form: FormGroup, inputName: string): void {
+    form.get(inputName)?.setValue('');
   }
 }

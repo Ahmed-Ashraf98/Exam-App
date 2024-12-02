@@ -4,3 +4,4 @@
 
 export * from './lib/auth-forms.service';
 export * from './lib/auth-forms.component';
+export * from './lib/interfaces/forms-fields';

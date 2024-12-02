@@ -1,8 +1,7 @@
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { FormTypes } from '../enums/formTypes';
-import { FormField } from './forms-fields';
-
+import { FormFields } from './forms-fields';
 export interface FormAdapter {
-  formAdapter(formType: FormTypes): FormGroup;
-  fieldCreation(fieldObj: FormField): FormControl;
+  formAdapter(formType: FormTypes, formFields?: FormFields): FormGroup;
+  createFormFields(data: any): any;
 }

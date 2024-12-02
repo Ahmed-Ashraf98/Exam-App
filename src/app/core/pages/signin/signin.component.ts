@@ -4,12 +4,11 @@ import { PasswordModule } from 'primeng/password';
 import { InputTextModule } from 'primeng/inputtext';
 import { PrimaryButtonComponent } from '../../../shared/components/ui/primary-button/primary-button.component';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { FormsManagerComponent } from '../../../shared/components/business/forms-manager/forms-manager.component';
-import { formTypes } from '../../../shared/enums/formTypes';
 import { InputValidationAlertComponent } from '../../../shared/components/business/input-validation-alert/input-validation-alert.component';
 import { AuthApiManagerService } from 'auth-api-manager';
 import { ToastComponent } from '../../../shared/components/ui/toast/toast.component';
 import { baseUrl } from '../../environment/environment.prod';
+import { AuthFormsService } from 'auth-forms';
 @Component({
   selector: 'app-signin',
   standalone: true,
@@ -27,10 +26,19 @@ import { baseUrl } from '../../environment/environment.prod';
   styleUrl: './signin.component.scss',
 })
 export class SigninComponent {
+  // inject services
   private readonly _AuthApiManagerService = inject(AuthApiManagerService);
+  private readonly _AuthFormsService = inject(AuthFormsService);
+  // Create instance from toaster
   private readonly _Toaster = new ToastComponent();
-  signinForm = new FormsManagerComponent(formTypes.Login).getForm();
+  // initialize the variables
+  signinForm = this._AuthFormsService.loginFormBuilder();
   isSubmitted = false;
+
+  /**
+   * @summary Send the form data to Login API
+   * @param data The form data
+   */
   login(data: any) {
     this.isSubmitted = true;
     this._AuthApiManagerService.login(baseUrl, data).subscribe({

@@ -6,6 +6,11 @@ import {
   AbstractControl,
 } from '@angular/forms';
 import { formTypes } from '../../../enums/formTypes';
+import {
+  NAME_PATTERN,
+  PASSWORD_PATTERN,
+  USERNAME_PATTERN,
+} from '../../../../core/environment/environment.prod';
 
 @Component({
   selector: 'app-forms-manager',
@@ -15,7 +20,47 @@ import { formTypes } from '../../../enums/formTypes';
   styleUrl: './forms-manager.component.scss',
 })
 export class FormsManagerComponent {
-  // formFields_2 = <string, {}>[] = [];
+  // formFields_2: FormField = {
+  //   email: {
+  //     default_val: '',
+  //     field_rules: [Validators.required, Validators.email],
+  //   },
+
+  //   password: {
+  //     default_val: '',
+  //     field_rules: [Validators.required, Validators.pattern(PASSWORD_PATTERN)],
+  //   },
+
+  //   rePassword: {
+  //     default_val: '',
+  //     field_rules: [Validators.required],
+  //   },
+
+  //   username: {
+  //     default_val: '',
+  //     field_rules: [Validators.required, Validators.pattern(USERNAME_PATTERN)],
+  //   },
+
+  //   firstName: {
+  //     default_val: '',
+  //     field_rules: [Validators.required, Validators.pattern(NAME_PATTERN)],
+  //   },
+
+  //   lastName: {
+  //     default_val: '',
+  //     field_rules: [Validators.required, Validators.pattern(NAME_PATTERN)],
+  //   },
+
+  //   phone: {
+  //     default_val: '',
+  //     field_rules: [Validators.required, Validators.pattern(NAME_PATTERN)],
+  //   },
+
+  //   resetCode: {
+  //     default_val: '',
+  //     field_rules: [Validators.required],
+  //   },
+  // };
 
   formType: formTypes;
 

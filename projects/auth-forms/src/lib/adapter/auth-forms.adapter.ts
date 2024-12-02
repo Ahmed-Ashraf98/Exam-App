@@ -1,52 +1,77 @@
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { formTypes } from '../enums/formTypes';
+import { FormControl, FormGroup } from '@angular/forms';
 import { FormAdapter } from '../interfaces/form-adapter';
+import { FormTypes } from '../enums/formTypes';
+import { FormFields } from '../interfaces/forms-fields';
+import { DEFAULT_FORM_FIELDS } from '../config/default-form-fields';
+import { FormFieldKeys } from '../enums/default-field-keys';
+import { CustomValidators } from '../config/custom-validators';
+import { Injectable } from '@angular/core';
 
+@Injectable({
+  providedIn: 'root',
+})
 export class AuthFormsAdapter implements FormAdapter {
-  formsFields = {
-    email: new FormControl<string | null>('', [
-      Validators.required,
-      Validators.email,
-    ]),
-    password: new FormControl<string | null>('', [
-      Validators.required,
-      Validators.pattern('^(?=.*[A-Z])(?=.*\\d).{6,}$'),
-    ]),
+  formAdapter(formType: FormTypes, formFields?: FormFields): FormGroup {
+    const keys = formFields
+      ? Object.keys(formFields)
+      : this.getDefaultFormKeys(formType);
 
-    rePassword: new FormControl<string | null>('', [Validators.required]),
+    const formData = this.createFormFields(
+      keys,
+      formFields ?? DEFAULT_FORM_FIELDS
+    );
 
-    username: new FormControl<string | null>('', [
-      Validators.required,
-      Validators.pattern('^[A-Za-z]{4,25}$'),
-    ]),
+    const isMatchPassRequired =
+      formType === FormTypes.REGISTER || formType === FormTypes.RESET_PASS;
 
-    firstName: new FormControl<string | null>('', [
-      Validators.required,
-      Validators.pattern('^[a-zA-Z]+$'),
-    ]),
-    lastName: new FormControl<string | null>('', [
-      Validators.required,
-      Validators.pattern('^[a-zA-Z]+$'),
-    ]),
-    phone: new FormControl<string | null>('', [
-      Validators.required,
-      Validators.pattern('^01[0125][0-9]{8}$'),
-    ]),
-    resetCode: new FormControl<string | null>('', [Validators.required]),
-  };
+    return isMatchPassRequired
+      ? new FormGroup(formData, CustomValidators.ConfirmPassword)
+      : new FormGroup(formData);
+  }
 
-  formAdapter(formType: formTypes): FormGroup {
+  createFormFields(keys: string[], obj?: FormFields): any {
+    let formObj: any = {};
+    keys.forEach((key) => {
+      let field = obj![key];
+      formObj[key] = new FormControl(field?.default_val, field?.field_rules);
+    });
+    return formObj;
+  }
+
+  private getDefaultFormKeys(formType: FormTypes) {
+    let keys: any;
     switch (formType) {
-      case formTypes.Login: //TODO Return the Form
-        return new FormGroup({});
-      case formTypes.Register: //TODO Return the Form
-        return;
-      case formTypes.ForgotPass: //TODO Return the Form
-        return;
-      case formTypes.ResetPass: //TODO Return the Form
-        return;
-      case formTypes.VerifyCode: //TODO Return the Form
-        return;
+      case FormTypes.LOGIN:
+        keys = [FormFieldKeys.Email, FormFieldKeys.Password];
+        break;
+      case FormTypes.REGISTER:
+        keys = [
+          FormFieldKeys.FirstName,
+          FormFieldKeys.LastName,
+          FormFieldKeys.UserName,
+          FormFieldKeys.Email,
+          FormFieldKeys.Phone,
+          FormFieldKeys.Password,
+          FormFieldKeys.Re_Password,
+        ];
+        break;
+
+      case FormTypes.FORGOT_PASS:
+        keys = [FormFieldKeys.Email];
+        break;
+
+      case FormTypes.RESET_PASS:
+        keys = [
+          FormFieldKeys.Email,
+          FormFieldKeys.Password,
+          FormFieldKeys.Re_Password,
+        ];
+        break;
+
+      case FormTypes.VERIFY_CODE:
+        keys = [FormFieldKeys.Reset_Code];
+        break;
     }
+    return keys;
   }
 }

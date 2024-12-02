@@ -11,6 +11,7 @@ import { AuthApiManagerService } from 'auth-api-manager';
 import { ToastComponent } from '../../../shared/components/ui/toast/toast.component';
 import { EmailSignal } from '../../../features/services/email.signal.service';
 import { baseUrl } from '../../environment/environment.prod';
+import { AuthFormsService } from 'auth-forms';
 
 @Component({
   selector: 'app-forgot-password',
@@ -27,13 +28,23 @@ import { baseUrl } from '../../environment/environment.prod';
   styleUrl: './forgot-password.component.scss',
 })
 export class ForgotPasswordComponent {
+  // inject services
   private readonly _AuthApiManagerService = inject(AuthApiManagerService);
-  private readonly _Toaster = new ToastComponent();
   private readonly _Router = inject(Router);
   private readonly _EmailSignal = inject(EmailSignal);
-  forgotPassForm = new FormsManagerComponent(formTypes.ForgotPass).getForm();
+  private readonly _AuthFormsService = inject(AuthFormsService);
+  // Create instance from toaster
+  private readonly _Toaster = new ToastComponent();
+  // initialize the variables
+  forgotPassForm = this._AuthFormsService.forgotPassFormBuilder();
   isSubmitted = false;
 
+  /**
+   * @summary Send the data to Forgot Pass API, after successful API Call the following should happen :
+   *  - The app will re-direct the user to the Verify Code Page
+   *  - The user should recieve the OTP over the email
+   * @param data The form data
+   */
   sendOTP(data: any) {
     this.isSubmitted = true;
     this._AuthApiManagerService.forgotPassword(baseUrl, data).subscribe({

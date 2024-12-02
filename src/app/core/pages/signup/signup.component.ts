@@ -12,6 +12,7 @@ import { ToastComponent } from '../../../shared/components/ui/toast/toast.compon
 import { FormUtilsService } from '../../../shared/services/form-utils-service.service';
 import { EmailSignal } from '../../../features/services/email.signal.service';
 import { baseUrl } from '../../environment/environment.prod';
+import { AuthFormsService } from 'auth-forms';
 @Component({
   selector: 'app-signup',
   standalone: true,
@@ -29,32 +30,44 @@ import { baseUrl } from '../../environment/environment.prod';
   styleUrl: './signup.component.scss',
 })
 export class SignupComponent implements OnInit {
+  // inject services
   private readonly _AuthApiManagerService = inject(AuthApiManagerService);
-  private readonly _Toaster = new ToastComponent();
   private readonly _Router = inject(Router);
   private readonly _EmailSignal = inject(EmailSignal);
-  registerForm = new FormsManagerComponent(formTypes.Register).getForm();
   private readonly _FormUtilsService = inject(FormUtilsService);
+  private readonly _AuthFormsService = inject(AuthFormsService);
+
+  // Create instance from toaster
+  private readonly _Toaster = new ToastComponent();
+
+  // initialize the variables
+  registerForm = this._AuthFormsService.registerFormBuilder();
   isSubmitted = false;
+
+  // Run functions when component is initialized
   ngOnInit(): void {
     this._EmailSignal.setData(null);
-    this._FormUtilsService.disableRePassword(this.registerForm);
+    this._FormUtilsService.disableField(this.registerForm, 'rePassword');
   }
 
-  handlePasswordsMatching() {
-    this._FormUtilsService.checkPassword(this.registerForm);
+  // Check if the [ Password ] input entered without validation error, if so then enable the [ Re-Password ] input otherwise disable the [ Re-Password ] input
+
+  /**
+   * @summary Check if the [ Password ] input entered without validation error, if so then enable the [ Re-Password ] input otherwise disable the [ Re-Password ] input
+   */
+  control_RePassword() {
+    if (this.registerForm.get('password')?.valid) {
+      this._FormUtilsService.enableField(this.registerForm, 'rePassword');
+    } else {
+      this._FormUtilsService.disableField(this.registerForm, 'rePassword');
+      this._FormUtilsService.clearField(this.registerForm, 'rePassword');
+    }
   }
 
-  test() {
-    console.log(this.registerForm);
-    console.log(
-      this.registerForm.get('rePassword')?.touched ||
-        this.registerForm.get('rePassword')?.dirty
-    );
-    console.log(this.registerForm.getError('mismatch'));
-    console.log('rePassword' === 'rePassword');
-  }
-
+  /**
+   * @summary  Submit data to register API
+   * @param data  The form data
+   */
   register(data: any) {
     this.isSubmitted = true;
     this._AuthApiManagerService.register(baseUrl, data).subscribe({

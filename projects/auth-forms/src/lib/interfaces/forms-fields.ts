@@ -1,18 +1,18 @@
-import { Validators } from '@angular/forms';
+import { ValidatorFn, Validators } from '@angular/forms';
 
-interface ValidationRules {
-  isRequired: boolean;
-  use_default_email_pattern?: boolean;
-  minLength?: number;
-  maxLength?: number;
-  customPattern?: string;
-}
+// interface ValidationRules {
+//   isRequired: boolean;
+//   use_default_email_pattern?: boolean;
+//   minLength?: number;
+//   maxLength?: number;
+//   customPattern?: string;
+// }
 
 interface FieldSettings {
   default_val: string | number | boolean | null;
-  field_settings: ValidationRules;
+  field_rules: ValidatorFn[];
 }
 
-export interface FormField {
+export interface FormFields {
   [key: string]: FieldSettings;
 }
