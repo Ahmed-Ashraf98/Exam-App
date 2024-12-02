@@ -4,8 +4,6 @@ import { PasswordModule } from 'primeng/password';
 import { InputTextModule } from 'primeng/inputtext';
 import { PrimaryButtonComponent } from '../../../shared/components/ui/primary-button/primary-button.component';
 import { Router } from '@angular/router';
-import { FormsManagerComponent } from '../../../shared/components/business/forms-manager/forms-manager.component';
-import { formTypes } from '../../../shared/enums/formTypes';
 import { InputValidationAlertComponent } from '../../../shared/components/business/input-validation-alert/input-validation-alert.component';
 import { AuthApiManagerService } from 'auth-api-manager';
 import { ToastComponent } from '../../../shared/components/ui/toast/toast.component';

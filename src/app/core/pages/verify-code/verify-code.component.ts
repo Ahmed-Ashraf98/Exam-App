@@ -2,7 +2,6 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PrimaryButtonComponent } from '../../../shared/components/ui/primary-button/primary-button.component';
 import { Router } from '@angular/router';
-import { FormsManagerComponent } from '../../../shared/components/business/forms-manager/forms-manager.component';
 import { formTypes } from '../../../shared/enums/formTypes';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputValidationAlertComponent } from '../../../shared/components/business/input-validation-alert/input-validation-alert.component';
@@ -10,6 +9,7 @@ import { AuthApiManagerService } from 'auth-api-manager';
 import { ToastComponent } from '../../../shared/components/ui/toast/toast.component';
 import { baseUrl } from '../../environment/environment.prod';
 import { EmailSignal } from '../../../features/services/email.signal.service';
+import { AuthFormsService } from 'auth-forms';
 
 @Component({
   selector: 'app-verify-code',
@@ -25,16 +25,24 @@ import { EmailSignal } from '../../../features/services/email.signal.service';
   styleUrl: './verify-code.component.scss',
 })
 export class VerifyCodeComponent {
+  // inject services
   private readonly _AuthApiManagerService = inject(AuthApiManagerService);
-  private readonly _Toaster = new ToastComponent();
   private readonly _Router = inject(Router);
   private readonly _EmailSignal = inject(EmailSignal);
+  private readonly _AuthFormsService = inject(AuthFormsService);
+  // Create instance from toaster
+  private readonly _Toaster = new ToastComponent();
 
-  verifyCodeForm = new FormsManagerComponent(formTypes.VerifyCode).getForm();
+  // initialize the variables
+  verifyCodeForm = this._AuthFormsService.verifyCodeFormBuilder();
   isSubmitted = false;
   isReSendCodeClicked: boolean = false;
   displayOTPTime: any;
 
+  /**
+   * @summary  Submit data to register API
+   * @param data  The form data
+   */
   verifyCode(data: any) {
     this.isSubmitted = true;
     this._AuthApiManagerService.verifyCode(baseUrl, data).subscribe({
@@ -60,6 +68,9 @@ export class VerifyCodeComponent {
     });
   }
 
+  /**
+   * @summary  This function resend the OTP to the user email
+   */
   resendOTP() {
     this.isReSendCodeClicked = true;
     this.timerOfOTP(1);
@@ -86,6 +97,10 @@ export class VerifyCodeComponent {
     });
   }
 
+  /**
+   * @summary Set timer for re-send OTP (You can re-send every number of "minute" passed to this function )
+   * @param minute Number of minutes to enable re-send the OTP again
+   */
   timerOfOTP(minute: any) {
     // let minute = 1;
     let seconds: number = minute * 60;
