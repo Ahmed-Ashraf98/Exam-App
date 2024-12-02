@@ -1,0 +1,12 @@
+<div class="flex flex-column justify-content-center align-items-center">
+  <div class="img-container">
+    <img src="/assets/images/error-404.png" alt="" srcset="" />
+  </div>
+  <app-primary-button
+    (actionToParent)="backToMainPage()"
+    class="mb-3"
+    btnLabel="Back To Main Page"
+    [isDisabled]="false"
+    [isLoading]="false"
+  ></app-primary-button>
+</div>
