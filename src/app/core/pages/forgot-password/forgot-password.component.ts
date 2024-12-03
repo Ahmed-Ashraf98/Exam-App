@@ -10,6 +10,7 @@ import { ToastComponent } from '../../../shared/components/ui/toast/toast.compon
 import { EmailSignal } from '../../../features/services/email.signal.service';
 import { baseUrl } from '../../environment/environment.prod';
 import { AuthFormsService } from 'auth-forms';
+import { ResetPassStepsSignalService } from '../../../features/services/reset-pass-steps-signal.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -28,9 +29,9 @@ import { AuthFormsService } from 'auth-forms';
 export class ForgotPasswordComponent {
   // inject services
   private readonly _AuthApiManagerService = inject(AuthApiManagerService);
-  private readonly _Router = inject(Router);
   private readonly _EmailSignal = inject(EmailSignal);
   private readonly _AuthFormsService = inject(AuthFormsService);
+  private readonly _StepsSignal = inject(ResetPassStepsSignalService);
   // Create instance from toaster
   private readonly _Toaster = new ToastComponent();
   // initialize the variables
@@ -57,7 +58,7 @@ export class ForgotPasswordComponent {
           severity = 'success';
           title = 'OTP Sent';
           message = res.info;
-          this._Router.navigate(['auth/verifyCode']);
+          this._StepsSignal.setStep(2); // go to Verify Code Component
         } else {
           let errorMsg = res.error.message;
           severity = 'error';

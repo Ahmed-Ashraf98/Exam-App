@@ -26,27 +26,11 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'forgotPassword',
+        path: 'forgotPWD',
         loadComponent: () =>
-          import('./core/pages/forgot-password/forgot-password.component').then(
-            (c) => c.ForgotPasswordComponent
-          ),
-      },
-
-      {
-        path: 'verifyCode',
-        loadComponent: () =>
-          import('./core/pages/verify-code/verify-code.component').then(
-            (c) => c.VerifyCodeComponent
-          ),
-      },
-
-      {
-        path: 'resetPass',
-        loadComponent: () =>
-          import('./core/pages/reset-password/reset-password.component').then(
-            (c) => c.ResetPasswordComponent
-          ),
+          import(
+            './core/layout/forgot-pass-layout/forgot-pass-layout.component'
+          ).then((c) => c.ForgotPassLayoutComponent),
       },
     ],
   },
