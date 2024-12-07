@@ -71,6 +71,13 @@ input {
   border-radius: 7.93px;
   box-shadow: 0px 10.09px 20.18px 0px #4461f20d;
 }
+input.custom-input {
+  &:focus-visible {
+    border: none;
+    outline: none;
+  }
+  box-shadow: none;
+}
 
 ::placeholder {
   font-family: Poppins;
