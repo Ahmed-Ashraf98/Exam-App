@@ -36,6 +36,25 @@ export const routes: Routes = [
   },
 
   {
+    path: 'main',
+    loadComponent: () =>
+      import('./core/layout/main-layout/main-layout.component').then(
+        (c) => c.MainLayoutComponent
+      ),
+
+    children: [
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      {
+        path: 'dashboard',
+        loadComponent: () =>
+          import('./core/layout/main-layout/main-layout.component').then(
+            (c) => c.MainLayoutComponent
+          ),
+      },
+    ],
+  },
+
+  {
     path: '**',
     loadComponent: () =>
       import('./core/pages/not-found/not-found.component').then(

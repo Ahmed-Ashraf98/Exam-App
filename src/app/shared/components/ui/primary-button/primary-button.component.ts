@@ -11,6 +11,8 @@ import { LoadingComponent } from '../loading/loading.component';
 })
 export class PrimaryButtonComponent {
   @Input() btnLabel: string = '';
+  @Input() classes: string = '';
+  @Input() styles: string = '';
   @Input() isDisabled: boolean = false;
   @Input() isLoading: boolean = false;
   @Output() actionToParent: EventEmitter<any> = new EventEmitter();

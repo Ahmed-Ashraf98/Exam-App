@@ -1,0 +1,37 @@
+<div class="main-layout min-vh-100">
+  <div class="main-layout-wrapper grid vh-100">
+    <div class="start-side col-2">
+      <div class="side-wrapper m-2 mt-5">
+        <div class="img-container">
+          <img src="/assets/images/elevate-logo.png" alt="" />
+        </div>
+        <ul class="main-menu unstyled-list m-0 p-0 mt-3">
+          <app-main-menu-item
+            itemRouter="dashboard"
+            itemIcon="fa-solid fa-table-columns"
+            itemName="Dashboard"
+          ></app-main-menu-item>
+          <app-main-menu-item
+            itemRouter="quiz-history"
+            itemIcon="fa-solid fa-clock-rotate-left"
+            itemName="Quiz History"
+          ></app-main-menu-item>
+
+          <app-log-out-btn></app-log-out-btn>
+
+          <!-- <app-main-menu-item
+            itemIcon="fa-solid fa-arrow-right-from-bracket"
+            itemName="Log Out"
+            classes="cursor-pointer"
+          ></app-main-menu-item> -->
+        </ul>
+      </div>
+    </div>
+    <div class="end-side col-10">
+      <div class="side-wrapper">
+        <h3>d</h3>
+        <app-custom-modal></app-custom-modal>
+      </div>
+    </div>
+  </div>
+</div>

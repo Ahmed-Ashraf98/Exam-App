@@ -1,0 +1,8 @@
+<li class="mt-4">
+  <a
+    [routerLink]="itemRouter"
+    [routerLinkActive]="itemRouter ? 'main-active' : ''"
+    [class]="'flex align-items-center ' + classes"
+    ><i [class]="itemIcon + ' pr-3'"></i><span>{{ itemName }}</span></a
+  >
+</li>

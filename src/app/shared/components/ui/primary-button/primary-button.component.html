@@ -3,7 +3,8 @@
   pRipple
   (click)="runAction()"
   [disabled]="isDisabled"
-  class="p-button-primary justify-content-center"
+  [class]="'p-button-primary justify-content-center ' + classes"
+  [style]="styles"
 >
   @if (isLoading) {
   <app-loading></app-loading>

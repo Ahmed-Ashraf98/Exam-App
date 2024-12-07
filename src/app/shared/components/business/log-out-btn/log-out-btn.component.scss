@@ -1,0 +1,11 @@
+li a {
+  font-weight: 600;
+  padding: 5px;
+  text-decoration: none;
+  border-radius: 10px;
+  color: var(--main-color);
+
+  & span {
+    color: var(--dark-gray);
+  }
+}
