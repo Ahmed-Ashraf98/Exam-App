@@ -28,7 +28,7 @@
       </div>
     </div>
     <div class="end-side col-10">
-      <div class="side-wrapper px-2 pt-2">
+      <div class="side-wrapper px-4 pt-2">
         <header class="header flex align-items-center">
           <div
             class="input-group flex-grow-1 mr-2 flex align-items-center"
@@ -101,15 +101,20 @@
           <div class="user-reports ml-6">
             <h2 class="mb-0" style="color: var(--main-color)">Ahmed Mohamed</h2>
             <p class="mt-1" style="color: var(--gray-color)">Voluptatem aut</p>
-            <ul class="m-0 p-0 unstyled-list user-reports-details flex">
+            <app-custom-progress-bar
+              progeressPrecentage="50"
+            ></app-custom-progress-bar>
+            <ul
+              class="m-0 p-0 unstyled-list user-reports-details flex flex-wrap"
+            >
               <app-report-card
-                classes="mr-4"
+                classes="mr-6"
                 reportIcon="fa-solid fa-flag"
                 reportTitle="Quiz Passed"
                 reportResult="27"
               ></app-report-card>
               <app-report-card
-                classes="mr-4"
+                classes="mr-6"
                 reportIcon="fa-solid fa-clock"
                 reportTitle="Fastest Time"
                 reportResult="13 min"
