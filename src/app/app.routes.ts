@@ -47,8 +47,8 @@ export const routes: Routes = [
       {
         path: 'dashboard',
         loadComponent: () =>
-          import('./core/layout/main-layout/main-layout.component').then(
-            (c) => c.MainLayoutComponent
+          import('./core/pages/dashboard/dashboard.component').then(
+            (c) => c.DashboardComponent
           ),
       },
     ],

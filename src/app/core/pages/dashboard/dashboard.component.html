@@ -1,0 +1,35 @@
+<app-custom-section sectionWrapperClasses="flex">
+  <div class="img-container">
+    <img
+      src="https://st3.depositphotos.com/3776273/31836/i/450/depositphotos_318367382-stock-photo-portrait-of-a-handsome-young.jpg"
+      alt=""
+      width="216"
+      height="216"
+      style="display: block; object-fit: cover"
+    />
+  </div>
+  <div class="user-reports ml-6">
+    <h2 class="mb-0" style="color: var(--main-color)">Ahmed Mohamed</h2>
+    <p class="mt-1" style="color: var(--gray-color)">Voluptatem aut</p>
+    <app-custom-progress-bar progeressPrecentage="50"></app-custom-progress-bar>
+    <ul class="m-0 p-0 unstyled-list user-reports-details flex flex-wrap">
+      <app-report-card
+        classes="mr-6"
+        reportIcon="fa-solid fa-flag"
+        reportTitle="Quiz Passed"
+        reportResult="27"
+      ></app-report-card>
+      <app-report-card
+        classes="mr-6"
+        reportIcon="fa-solid fa-clock"
+        reportTitle="Fastest Time"
+        reportResult="13 min"
+      ></app-report-card>
+      <app-report-card
+        reportIcon="fa-solid fa-circle-check"
+        reportTitle="Correct Answers"
+        reportResult="200"
+      ></app-report-card>
+    </ul>
+  </div>
+</app-custom-section>
