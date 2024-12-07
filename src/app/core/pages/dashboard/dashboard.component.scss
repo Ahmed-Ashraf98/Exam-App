@@ -1,0 +1,11 @@
+.subjects-section {
+  & header {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 36px;
+    color: var(--main-color);
+    & p {
+      margin: 0;
+    }
+  }
+}
