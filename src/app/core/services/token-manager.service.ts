@@ -10,18 +10,12 @@ export class TokenManagerService {
   private readonly _LocalStorageManagerService = inject(
     LocalStorageManagerService
   );
-  private readonly _platform = inject(PLATFORM_ID);
 
   set setToken(token: string) {
-    if (isPlatformBrowser(this._platform)) {
-      this._LocalStorageManagerService.setData(this.tokenKeyName, token);
-    }
+    this._LocalStorageManagerService.setData(this.tokenKeyName, token);
   }
 
   get getToken(): string | null {
-    if (isPlatformBrowser(this._platform)) {
-      return this._LocalStorageManagerService.getData(this.tokenKeyName);
-    }
-    return null;
+    return this._LocalStorageManagerService.getData(this.tokenKeyName);
   }
 }
