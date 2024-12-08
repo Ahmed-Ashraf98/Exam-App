@@ -55,8 +55,7 @@ export class SigninComponent {
           title = 'Welcome!';
           message = 'You have logged-in successfully';
           this._TokenManagerService.setToken = res.token;
-          //TODO:  Navigate to home page
-          this._Router.navigate(['']);
+          this._Router.navigate(['/main/dashboard']);
         } else {
           let errorMsg = res.error.message;
           severity = 'error';
