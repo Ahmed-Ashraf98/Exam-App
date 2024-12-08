@@ -3,12 +3,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PasswordModule } from 'primeng/password';
 import { InputTextModule } from 'primeng/inputtext';
 import { PrimaryButtonComponent } from '../../../shared/components/ui/primary-button/primary-button.component';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { InputValidationAlertComponent } from '../../../shared/components/business/input-validation-alert/input-validation-alert.component';
 import { AuthApiManagerService } from 'auth-api-manager';
 import { ToastComponent } from '../../../shared/components/ui/toast/toast.component';
 import { baseUrl } from '../../environment/environment.prod';
 import { AuthFormsService } from 'auth-forms';
+import { TokenManagerService } from '../../services/token-manager.service';
 @Component({
   selector: 'app-signin',
   standalone: true,
@@ -29,6 +30,8 @@ export class SigninComponent {
   // inject services
   private readonly _AuthApiManagerService = inject(AuthApiManagerService);
   private readonly _AuthFormsService = inject(AuthFormsService);
+  private readonly _TokenManagerService = inject(TokenManagerService);
+  private readonly _Router = inject(Router);
   // Create instance from toaster
   private readonly _Toaster = new ToastComponent();
   // initialize the variables
@@ -51,7 +54,9 @@ export class SigninComponent {
           severity = 'success';
           title = 'Welcome!';
           message = 'You have logged-in successfully';
+          this._TokenManagerService.setToken = res.token;
           //TODO:  Navigate to home page
+          this._Router.navigate(['']);
         } else {
           let errorMsg = res.error.message;
           severity = 'error';

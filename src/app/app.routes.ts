@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './core/guard/auth.guard';
+import { loggedInUserGuard } from './core/guard/logged-in-user.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'auth', pathMatch: 'full' },
@@ -8,6 +10,7 @@ export const routes: Routes = [
       import('./core/layout/auth-layout/auth-layout.component').then(
         (c) => c.AuthLayoutComponent
       ),
+    canActivate: [loggedInUserGuard],
 
     children: [
       { path: '', redirectTo: 'signin', pathMatch: 'full' },
@@ -41,7 +44,7 @@ export const routes: Routes = [
       import('./core/layout/main-layout/main-layout.component').then(
         (c) => c.MainLayoutComponent
       ),
-
+    canActivate: [authGuard],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       {
