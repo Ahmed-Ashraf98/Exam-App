@@ -37,6 +37,7 @@ export class SigninComponent {
   // initialize the variables
   signinForm = this._AuthFormsService.loginFormBuilder();
   isSubmitted = false;
+  canNavigate = false;
 
   /**
    * @summary Send the form data to Login API
@@ -55,7 +56,7 @@ export class SigninComponent {
           title = 'Welcome!';
           message = 'You have logged-in successfully';
           this._TokenManagerService.setToken = res.token;
-          this._Router.navigate(['/main/dashboard']);
+          this.canNavigate = true;
         } else {
           let errorMsg = res.error.message;
           severity = 'error';
@@ -64,6 +65,7 @@ export class SigninComponent {
         }
 
         this._Toaster.showToaster(severity, title, message);
+        this.canNavigate && this._Router.navigate(['/main/dashboard']);
       },
     });
   }
