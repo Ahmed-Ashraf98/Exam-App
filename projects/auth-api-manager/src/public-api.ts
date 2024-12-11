@@ -3,4 +3,3 @@
  */
 
 export * from './lib/auth-api-manager.service';
-export * from './lib/auth-api-manager.component';

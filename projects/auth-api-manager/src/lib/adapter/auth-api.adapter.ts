@@ -37,6 +37,33 @@ export class AuthAPIAdapter implements Adapter {
       case RequestCategory.VerifyCode:
         resultObj = { status: data.status };
         break;
+
+      case RequestCategory.ChangePassword:
+        resultObj = {};
+        break;
+
+      case RequestCategory.DeleteMyAcc:
+        resultObj = {};
+        break;
+
+      case RequestCategory.EditProfile:
+        resultObj = {};
+        break;
+
+      case RequestCategory.Logout:
+        resultObj = { message: data.message };
+        break;
+
+      case RequestCategory.ProfileData:
+        resultObj = {
+          message: data.message,
+          _id: data.user._id,
+          firstName: data.user.firstName,
+          lastName: data.user.lastName,
+          email: data.user.email,
+          role: data.user.role,
+        };
+        break;
     }
 
     return resultObj;

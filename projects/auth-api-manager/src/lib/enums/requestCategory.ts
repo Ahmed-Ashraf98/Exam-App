@@ -4,4 +4,9 @@ export enum RequestCategory {
   ForgotPass,
   VerifyCode,
   ResetPassword,
+  ChangePassword,
+  DeleteMyAcc,
+  EditProfile,
+  Logout,
+  ProfileData,
 }

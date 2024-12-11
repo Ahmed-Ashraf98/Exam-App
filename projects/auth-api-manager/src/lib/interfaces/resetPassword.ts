@@ -1,9 +1,9 @@
-export interface ResetPasswordReq {
+export interface ResetPWD_Request {
   email: string;
   newPassword: string;
 }
 
-export interface ResetPasswordRes {
+export interface ResetPWD_Response {
   message: string;
   token: string;
 }

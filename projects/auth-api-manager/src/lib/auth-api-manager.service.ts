@@ -4,13 +4,13 @@ import { catchError, map, Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AuthEndpoint } from './enums/AuthAPI.endpoint';
 import { AuthAPIAdapter } from './adapter/auth-api.adapter';
-import { LoginReq, LoginSuccessRes } from './interfaces/login';
-import { RegisterReq } from './interfaces/register';
+import { Login_Request } from './interfaces/login';
+import { Register_Request } from './interfaces/register';
 import { ErrorResponse } from './interfaces/error-response';
-import { ForgotPasswordReq } from './interfaces/forgot-pass';
+import { ForgotPWD_Request } from './interfaces/forgot-pass';
 import { RequestCategory } from './enums/requestCategory';
-import { VerifyCodeReq } from './interfaces/verify-otp';
-import { ResetPasswordReq } from './interfaces/resetPassword';
+import { VerifyCode_Request } from './interfaces/verify-otp';
+import { ResetPWD_Request } from './interfaces/resetPassword';
 
 @Injectable({
   providedIn: 'root',
@@ -21,26 +21,14 @@ export class AuthApiManagerService implements AuthAPI {
   // Initalize the object with adapter
   constructor(private _AuthAPIAdapter: AuthAPIAdapter) {}
 
-  /**
-   * @summary This method is used to submit the login details of the user and return the result from backend
-   * @param baseURL the base URL for the API, for example : https://example.com/api/v1/
-   * @param data the data submitted in [ Login ] Form
-   * @returns Observable
-   */
-  login(baseURL: string, data: LoginReq): Observable<any> {
+  login(baseURL: string, data: Login_Request): Observable<any> {
     return this._HttpClient.post(baseURL + AuthEndpoint.LOGIN, data).pipe(
       map((res: any) => this._AuthAPIAdapter.adapt(res, RequestCategory.Login)),
       catchError((err: ErrorResponse) => of(err))
     );
   }
 
-  /**
-   * @summary This method is used to submit the user registeration details and return the result from backend
-   * @param baseURL the base URL for the API, for example : https://example.com/api/v1/
-   * @param data the data submitted in [ Register ] Form
-   * @returns Observable
-   */
-  register(baseURL: string, data: RegisterReq): Observable<any> {
+  register(baseURL: string, data: Register_Request): Observable<any> {
     return this._HttpClient.post(baseURL + AuthEndpoint.REGISTER, data).pipe(
       map((res: any) =>
         this._AuthAPIAdapter.adapt(res, RequestCategory.Register)
@@ -49,13 +37,7 @@ export class AuthApiManagerService implements AuthAPI {
     );
   }
 
-  /**
-   * @summary This method is used to send OTP to the User email
-   * @param baseURL the base URL for the API, for example : https://example.com/api/v1/
-   * @param data the data submitted in [ Forgot Password ] Form
-   * @returns Observable
-   */
-  forgotPassword(baseURL: string, data: ForgotPasswordReq): Observable<any> {
+  forgotPassword(baseURL: string, data: ForgotPWD_Request): Observable<any> {
     return this._HttpClient
       .post(baseURL + AuthEndpoint.FORGOT_PASSWORD, data)
       .pipe(
@@ -66,13 +48,7 @@ export class AuthApiManagerService implements AuthAPI {
       );
   }
 
-  /**
-   * @summary This method is used to verify the entered OTP code
-   * @param baseURL the base URL for the API, for example : https://example.com/api/v1/
-   * @param data the data submitted in [ Verify Code ] Form
-   * @returns Observable
-   */
-  verifyCode(baseURL: string, data: VerifyCodeReq): Observable<any> {
+  verifyCode(baseURL: string, data: VerifyCode_Request): Observable<any> {
     return this._HttpClient.post(baseURL + AuthEndpoint.VERIFY_CODE, data).pipe(
       map((res: any) =>
         this._AuthAPIAdapter.adapt(res, RequestCategory.VerifyCode)
@@ -81,13 +57,7 @@ export class AuthApiManagerService implements AuthAPI {
     );
   }
 
-  /**
-   * @summary This method is used to reset password
-   * @param baseURL the base URL for the API, for example : https://example.com/api/v1/
-   * @param data the data submitted in [ Reset Password ] Form
-   * @returns Observable
-   */
-  resetPassword(baseURL: string, data: ResetPasswordReq): Observable<any> {
+  resetPassword(baseURL: string, data: ResetPWD_Request): Observable<any> {
     return this._HttpClient
       .put(baseURL + AuthEndpoint.RESET_PASSWORD, data)
       .pipe(
@@ -96,5 +66,52 @@ export class AuthApiManagerService implements AuthAPI {
         ),
         catchError((err: ErrorResponse) => of(err))
       );
+  }
+
+  changePassword(baseURL: string, data: any): Observable<any> {
+    return this._HttpClient
+      .patch(baseURL + AuthEndpoint.CHANGE_PASSWORD, data)
+      .pipe(
+        map((res: any) =>
+          this._AuthAPIAdapter.adapt(res, RequestCategory.ChangePassword)
+        ),
+        catchError((err: ErrorResponse) => of(err))
+      );
+  }
+
+  deleteMyAcc(baseURL: string): Observable<any> {
+    return this._HttpClient.delete(baseURL + AuthEndpoint.DELETE_MY_ACC).pipe(
+      map((res: any) =>
+        this._AuthAPIAdapter.adapt(res, RequestCategory.DeleteMyAcc)
+      ),
+      catchError((err: ErrorResponse) => of(err))
+    );
+  }
+
+  editProfile(baseURL: string, data: any): Observable<any> {
+    return this._HttpClient.put(baseURL + AuthEndpoint.EDIT_PROFILE, data).pipe(
+      map((res: any) =>
+        this._AuthAPIAdapter.adapt(res, RequestCategory.EditProfile)
+      ),
+      catchError((err: ErrorResponse) => of(err))
+    );
+  }
+
+  logout(baseURL: string): Observable<any> {
+    return this._HttpClient.get(baseURL + AuthEndpoint.LOGOUT).pipe(
+      map((res: any) =>
+        this._AuthAPIAdapter.adapt(res, RequestCategory.Logout)
+      ),
+      catchError((err: ErrorResponse) => of(err))
+    );
+  }
+
+  profileData(baseURL: string): Observable<any> {
+    return this._HttpClient.get(baseURL + AuthEndpoint.PROFILE_INFO).pipe(
+      map((res: any) =>
+        this._AuthAPIAdapter.adapt(res, RequestCategory.ProfileData)
+      ),
+      catchError((err: ErrorResponse) => of(err))
+    );
   }
 }

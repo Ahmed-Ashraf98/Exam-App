@@ -1,7 +1,7 @@
-export interface VerifyCodeReq {
+export interface VerifyCode_Request {
   resetCode: string;
 }
 
-export interface VerifyCodeRes {
+export interface VerifyCode_Response {
   status: string;
 }

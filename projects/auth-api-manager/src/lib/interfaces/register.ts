@@ -1,6 +1,6 @@
 import { User } from './user';
 
-export interface RegisterReq {
+export interface Register_Request {
   username: string;
   firstName: string;
   lastName: string;
@@ -10,7 +10,7 @@ export interface RegisterReq {
   phone: string;
 }
 
-export interface RegisterSuccessRes {
+export interface Register_Response {
   message: string;
   token: string;
   user: User;
