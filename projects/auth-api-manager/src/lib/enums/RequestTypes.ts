@@ -1,4 +1,4 @@
-export enum RequestCategory {
+export enum RequestTypes {
   Login,
   Register,
   ForgotPass,

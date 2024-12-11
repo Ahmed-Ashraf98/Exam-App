@@ -8,7 +8,7 @@ import { Login_Request } from './interfaces/login';
 import { Register_Request } from './interfaces/register';
 import { ErrorResponse } from './interfaces/error-response';
 import { ForgotPWD_Request } from './interfaces/forgot-pass';
-import { RequestCategory } from './enums/requestCategory';
+import { RequestTypes } from './enums/RequestTypes';
 import { VerifyCode_Request } from './interfaces/verify-otp';
 import { ResetPWD_Request } from './interfaces/resetPassword';
 
@@ -23,16 +23,14 @@ export class AuthApiManagerService implements AuthAPI {
 
   login(baseURL: string, data: Login_Request): Observable<any> {
     return this._HttpClient.post(baseURL + AuthEndpoint.LOGIN, data).pipe(
-      map((res: any) => this._AuthAPIAdapter.adapt(res, RequestCategory.Login)),
+      map((res: any) => this._AuthAPIAdapter.adapt(res, RequestTypes.Login)),
       catchError((err: ErrorResponse) => of(err))
     );
   }
 
   register(baseURL: string, data: Register_Request): Observable<any> {
     return this._HttpClient.post(baseURL + AuthEndpoint.REGISTER, data).pipe(
-      map((res: any) =>
-        this._AuthAPIAdapter.adapt(res, RequestCategory.Register)
-      ),
+      map((res: any) => this._AuthAPIAdapter.adapt(res, RequestTypes.Register)),
       catchError((err: ErrorResponse) => of(err))
     );
   }
@@ -42,7 +40,7 @@ export class AuthApiManagerService implements AuthAPI {
       .post(baseURL + AuthEndpoint.FORGOT_PASSWORD, data)
       .pipe(
         map((res: any) =>
-          this._AuthAPIAdapter.adapt(res, RequestCategory.ForgotPass)
+          this._AuthAPIAdapter.adapt(res, RequestTypes.ForgotPass)
         ),
         catchError((err: ErrorResponse) => of(err))
       );
@@ -51,7 +49,7 @@ export class AuthApiManagerService implements AuthAPI {
   verifyCode(baseURL: string, data: VerifyCode_Request): Observable<any> {
     return this._HttpClient.post(baseURL + AuthEndpoint.VERIFY_CODE, data).pipe(
       map((res: any) =>
-        this._AuthAPIAdapter.adapt(res, RequestCategory.VerifyCode)
+        this._AuthAPIAdapter.adapt(res, RequestTypes.VerifyCode)
       ),
       catchError((err: ErrorResponse) => of(err))
     );
@@ -62,7 +60,7 @@ export class AuthApiManagerService implements AuthAPI {
       .put(baseURL + AuthEndpoint.RESET_PASSWORD, data)
       .pipe(
         map((res: any) =>
-          this._AuthAPIAdapter.adapt(res, RequestCategory.ResetPassword)
+          this._AuthAPIAdapter.adapt(res, RequestTypes.ResetPassword)
         ),
         catchError((err: ErrorResponse) => of(err))
       );
@@ -73,7 +71,7 @@ export class AuthApiManagerService implements AuthAPI {
       .patch(baseURL + AuthEndpoint.CHANGE_PASSWORD, data)
       .pipe(
         map((res: any) =>
-          this._AuthAPIAdapter.adapt(res, RequestCategory.ChangePassword)
+          this._AuthAPIAdapter.adapt(res, RequestTypes.ChangePassword)
         ),
         catchError((err: ErrorResponse) => of(err))
       );
@@ -82,7 +80,7 @@ export class AuthApiManagerService implements AuthAPI {
   deleteMyAcc(baseURL: string): Observable<any> {
     return this._HttpClient.delete(baseURL + AuthEndpoint.DELETE_MY_ACC).pipe(
       map((res: any) =>
-        this._AuthAPIAdapter.adapt(res, RequestCategory.DeleteMyAcc)
+        this._AuthAPIAdapter.adapt(res, RequestTypes.DeleteMyAcc)
       ),
       catchError((err: ErrorResponse) => of(err))
     );
@@ -91,7 +89,7 @@ export class AuthApiManagerService implements AuthAPI {
   editProfile(baseURL: string, data: any): Observable<any> {
     return this._HttpClient.put(baseURL + AuthEndpoint.EDIT_PROFILE, data).pipe(
       map((res: any) =>
-        this._AuthAPIAdapter.adapt(res, RequestCategory.EditProfile)
+        this._AuthAPIAdapter.adapt(res, RequestTypes.EditProfile)
       ),
       catchError((err: ErrorResponse) => of(err))
     );
@@ -99,9 +97,7 @@ export class AuthApiManagerService implements AuthAPI {
 
   logout(baseURL: string): Observable<any> {
     return this._HttpClient.get(baseURL + AuthEndpoint.LOGOUT).pipe(
-      map((res: any) =>
-        this._AuthAPIAdapter.adapt(res, RequestCategory.Logout)
-      ),
+      map((res: any) => this._AuthAPIAdapter.adapt(res, RequestTypes.Logout)),
       catchError((err: ErrorResponse) => of(err))
     );
   }
@@ -109,7 +105,7 @@ export class AuthApiManagerService implements AuthAPI {
   profileData(baseURL: string): Observable<any> {
     return this._HttpClient.get(baseURL + AuthEndpoint.PROFILE_INFO).pipe(
       map((res: any) =>
-        this._AuthAPIAdapter.adapt(res, RequestCategory.ProfileData)
+        this._AuthAPIAdapter.adapt(res, RequestTypes.ProfileData)
       ),
       catchError((err: ErrorResponse) => of(err))
     );

@@ -1,7 +1,5 @@
 import { baseUrl } from '../environment/environment.prod';
 
-export enum AuthEndpoint {}
-
 export enum ExamsEndpoint {
   Exams = `${baseUrl}exams`,
 }

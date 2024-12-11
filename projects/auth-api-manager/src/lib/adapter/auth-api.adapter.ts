@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Adapter } from '../interfaces/adapter';
-import { RequestCategory } from '../enums/requestCategory';
+import { RequestTypes } from '../enums/RequestTypes';
 
 @Injectable({
   providedIn: 'root',
@@ -8,11 +8,11 @@ import { RequestCategory } from '../enums/requestCategory';
 export class AuthAPIAdapter implements Adapter {
   constructor() {}
 
-  adapt(data: any, requestCategory: RequestCategory): any {
+  adapt(data: any, requestCategory: RequestTypes): any {
     let resultObj;
     switch (requestCategory) {
-      case RequestCategory.Login:
-      case RequestCategory.Register:
+      case RequestTypes.Login:
+      case RequestTypes.Register:
         resultObj = {
           message: data.message,
           token: data.token,
@@ -20,41 +20,41 @@ export class AuthAPIAdapter implements Adapter {
         };
         break;
 
-      case RequestCategory.ForgotPass:
+      case RequestTypes.ForgotPass:
         resultObj = {
           message: data.message,
           info: data.info,
         };
         break;
 
-      case RequestCategory.ResetPassword:
+      case RequestTypes.ResetPassword:
         resultObj = {
           message: data.message,
           token: data.token,
         };
         break;
 
-      case RequestCategory.VerifyCode:
+      case RequestTypes.VerifyCode:
         resultObj = { status: data.status };
         break;
 
-      case RequestCategory.ChangePassword:
+      case RequestTypes.ChangePassword:
         resultObj = {};
         break;
 
-      case RequestCategory.DeleteMyAcc:
+      case RequestTypes.DeleteMyAcc:
         resultObj = {};
         break;
 
-      case RequestCategory.EditProfile:
+      case RequestTypes.EditProfile:
         resultObj = {};
         break;
 
-      case RequestCategory.Logout:
+      case RequestTypes.Logout:
         resultObj = { message: data.message };
         break;
 
-      case RequestCategory.ProfileData:
+      case RequestTypes.ProfileData:
         resultObj = {
           message: data.message,
           _id: data.user._id,
