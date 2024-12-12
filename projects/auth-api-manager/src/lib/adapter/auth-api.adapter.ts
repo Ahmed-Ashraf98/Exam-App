@@ -57,11 +57,13 @@ export class AuthAPIAdapter implements Adapter {
       case RequestTypes.ProfileData:
         resultObj = {
           message: data.message,
-          _id: data.user._id,
-          firstName: data.user.firstName,
-          lastName: data.user.lastName,
-          email: data.user.email,
-          role: data.user.role,
+          user: {
+            _id: data.user._id,
+            firstName: data.user.firstName,
+            lastName: data.user.lastName,
+            email: data.user.email,
+            role: data.user.role,
+          },
         };
         break;
     }

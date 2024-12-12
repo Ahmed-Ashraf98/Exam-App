@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-subject-card',
@@ -8,8 +8,13 @@ import { Component, Input } from '@angular/core';
   styleUrl: './subject-card.component.scss',
 })
 export class SubjectCardComponent {
-  @Input() imageUrl: string = '';
-  @Input() subjectName: string = '';
-  @Input() subjectDescription: string =
-    'Voluptatem aut ut dignissimos blanditiis';
+  @Input() id: string = '';
+  @Input() icon: string = '';
+  @Input() name: string = '';
+  @Input() description: string = 'Voluptatem aut ut dignissimos blanditiis';
+  @Output() actionToParent: EventEmitter<any> = new EventEmitter();
+
+  runAction() {
+    this.actionToParent.emit();
+  }
 }

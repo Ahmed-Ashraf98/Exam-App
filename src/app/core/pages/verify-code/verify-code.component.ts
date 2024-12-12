@@ -1,8 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PrimaryButtonComponent } from '../../../shared/components/ui/primary-button/primary-button.component';
-import { Router } from '@angular/router';
-import { formTypes } from '../../../shared/enums/formTypes';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputValidationAlertComponent } from '../../../shared/components/business/input-validation-alert/input-validation-alert.component';
 import { AuthApiManagerService } from 'auth-api-manager';

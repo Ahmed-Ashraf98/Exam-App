@@ -9,8 +9,10 @@
     />
   </div>
   <div class="user-reports ml-6">
-    <h2 class="mb-0" style="color: var(--main-color)">Ahmed Mohamed</h2>
-    <p class="mt-1" style="color: var(--gray-color)">Voluptatem aut</p>
+    <h2 class="mb-0" style="color: var(--main-color)">
+      {{ userObj.firstName }} {{ userObj.lastName }}
+    </h2>
+    <p class="mt-1" style="color: var(--gray-color)">{{ userObj.email }}</p>
     <app-custom-progress-bar progeressPrecentage="50"></app-custom-progress-bar>
     <ul class="m-0 p-0 unstyled-list user-reports-details flex flex-wrap">
       <app-report-card
@@ -39,10 +41,26 @@
     <p>Quizes</p>
     <a>View All</a>
   </header>
-  <ul class="unstyled-list p-0 flex">
+
+  <ul class="unstyled-list p-0 flex flex-wrap">
+    @for (subject of allSubjects; track subject._id) {
     <app-subject-card
-      imageUrl="assets/images/unknown-user.jpg"
-      subjectName="Front-end Web Development"
+      (actionToParent)="goToExamsOfSubject(subject._id)"
+      ;
+      [id]="subject._id"
+      [icon]="subject.icon"
+      [name]="subject.name"
     ></app-subject-card>
+    }
   </ul>
+
+  <!-- <cdk-virtual-scroll-viewport
+    itemSize="200"
+    (scrolledIndexChange)="onScroll($event)"
+    style="height: 400px; width: auto; border: 1px solid black; overflow: auto"
+  >
+    <div *cdkVirtualFor="let item of items" class="item">
+      {{ item }}
+    </div>
+  </cdk-virtual-scroll-viewport> -->
 </app-custom-section>

@@ -1,11 +1,11 @@
 <li>
-  <figure>
-    <img [src]="imageUrl" alt="subject image" srcset="" width="100%" />
+  <figure (click)="runAction()" class="cursor-pointer">
+    <img [src]="icon" alt="subject image" srcset="" width="100%" />
     <figcaption class="caption">
       <div class="caption-wrapper flex flex-column">
-        <span class="subject-name">{{ subjectName }}</span>
+        <span class="subject-name">{{ name }}</span>
         <span class="subject-description">
-          {{ subjectDescription }}
+          {{ description }}
         </span>
       </div>
     </figcaption>

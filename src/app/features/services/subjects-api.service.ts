@@ -24,13 +24,18 @@ export class SubjectsAPIService implements SubjectsAPIs {
     );
   }
 
-  getAllSubjects(): Observable<any> {
-    return this._HttpClient.get(SubjectsEndpoint.Subjects).pipe(
-      map((res: any) =>
-        this._APIAdapter.adapt(res, RequestNames.Get_All_Subjects)
-      ),
-      catchError((err: ErrorResponse) => of(err))
-    );
+  getAllSubjects(page?: number, limit?: number): Observable<any> {
+    return this._HttpClient
+      .get(
+        SubjectsEndpoint.Subjects +
+          `${page ? '?page=' + page : ''}${limit ? '&limit=' + limit : ''}`
+      )
+      .pipe(
+        map((res: any) =>
+          this._APIAdapter.adapt(res, RequestNames.Get_All_Subjects)
+        ),
+        catchError((err: ErrorResponse) => of(err))
+      );
   }
   getSubjectById(subjectId: string): Observable<any> {
     return this._HttpClient
