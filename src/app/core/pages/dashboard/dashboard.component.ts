@@ -31,6 +31,7 @@ export class DashboardComponent implements OnInit {
   // Declare Vars
   userObj: any;
   allSubjects: any = [];
+
   items = Array.from({ length: 1000 }, (_, i) => `Item ${i + 1}`);
   getUserInfo() {
     this._AuthApiManagerService.profileData(baseUrl).subscribe({
@@ -50,7 +51,9 @@ export class DashboardComponent implements OnInit {
   }
 
   goToExamsOfSubject(subjectId: string) {
-    this._Router.navigate(['', subjectId]);
+    this._Router.navigate(['main/exams'], {
+      queryParams: { subject: subjectId },
+    });
   }
 
   onScroll(index: number) {

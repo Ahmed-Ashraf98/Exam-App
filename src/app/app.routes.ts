@@ -54,6 +54,13 @@ export const routes: Routes = [
             (c) => c.DashboardComponent
           ),
       },
+      {
+        path: 'exams',
+        loadComponent: () =>
+          import('./core/pages/exams/exams.component').then(
+            (c) => c.ExamsComponent
+          ),
+      },
     ],
   },
 

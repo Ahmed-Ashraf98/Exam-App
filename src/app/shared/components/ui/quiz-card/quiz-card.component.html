@@ -1,0 +1,19 @@
+<li class="flex justify-content-between align-items-center mt-3">
+  <div class="left-side flex align-items-center">
+    <div class="quiz-icon">
+      <img src="/assets/images/quiz-icon.jpg" alt="" />
+    </div>
+    <div class="quiz-overview ml-3">
+      <p class="m-0 p-0 title">{{ title }}</p>
+      <span class="num-of-qs">{{ numOfQuestions }} Question</span>
+    </div>
+  </div>
+  <div class="right-side">
+    <p class="m-0 p-1 duration">{{ duration }} Minutes</p>
+    <app-primary-button
+      btnLabel="Start"
+      classes="w-auto"
+      styles="padding:4px 24px; border-radius:50px"
+    ></app-primary-button>
+  </div>
+</li>

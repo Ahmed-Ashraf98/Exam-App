@@ -46,7 +46,6 @@
     @for (subject of allSubjects; track subject._id) {
     <app-subject-card
       (actionToParent)="goToExamsOfSubject(subject._id)"
-      ;
       [id]="subject._id"
       [icon]="subject.icon"
       [name]="subject.name"
