@@ -24,11 +24,6 @@
   animation: test 1.5s 0.5s;
 }
 
-// .p-component-overlay {
-//   background-color: rgba(0, 0, 0, 0.4);
-//   transition-duration: 0.2s;
-// }
-
 @keyframes test {
   0% {
     transform: scale(1);
@@ -42,6 +37,3 @@
     transform: scale(1);
   }
 }
-// .custom-modal-wrapper {
-//   transform: scale(1);
-// }

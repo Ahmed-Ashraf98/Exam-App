@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { PrimaryButtonComponent } from '../primary-button/primary-button.component';
 
 @Component({
@@ -8,4 +8,6 @@ import { PrimaryButtonComponent } from '../primary-button/primary-button.compone
   templateUrl: './custom-modal.component.html',
   styleUrl: './custom-modal.component.scss',
 })
-export class CustomModalComponent {}
+export class CustomModalComponent {
+  @Input() modalWidth?: number;
+}
