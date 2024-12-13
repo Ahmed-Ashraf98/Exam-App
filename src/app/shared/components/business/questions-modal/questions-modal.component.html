@@ -34,11 +34,19 @@
     </div>
 
     }
-    <div class="bts-group flex justify-content-center">
-      <app-primary-button btnLabel="Back"></app-primary-button>
+    <div class="bts-group flex justify-content-between">
       <app-primary-button
+        class="w-full flex-grow-1 mr-2"
+        btnLabel="Back"
+        classes="btn-outline-prim w-full"
+        styles="border-radius:100px; padding:10px 24px"
+      ></app-primary-button>
+      <app-primary-button
+        class="w-full flex-grow-1"
         btnLabel="Next"
         [isDisabled]="true"
+        classes="w-full"
+        styles="border-radius:100px; padding:10px 24px"
       ></app-primary-button>
     </div>
   </form>

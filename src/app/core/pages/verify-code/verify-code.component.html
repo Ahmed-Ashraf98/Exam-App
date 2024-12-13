@@ -33,6 +33,8 @@
     btnLabel="Verify OTP"
     [isDisabled]="!verifyCodeForm.valid || isSubmitted"
     [isLoading]="isSubmitted"
+    classes="w-full"
+    styles="padding:8px; border-radius:20px;"
   ></app-primary-button>
 </form>
 <app-toast></app-toast>

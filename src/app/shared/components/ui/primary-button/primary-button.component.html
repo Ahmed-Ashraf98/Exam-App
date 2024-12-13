@@ -3,7 +3,13 @@
   pRipple
   (click)="runAction()"
   [disabled]="isDisabled"
-  [class]="'p-button-primary justify-content-center ' + classes"
+  [class]="
+    'p-button-primary justify-content-center btn-custom' +
+    ' ' +
+    (isDisabled ? 'btn-disabled' : 'btn-prim') +
+    ' ' +
+    classes
+  "
   [style]="styles"
 >
   @if (isLoading) {

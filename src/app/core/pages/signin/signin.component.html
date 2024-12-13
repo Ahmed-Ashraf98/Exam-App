@@ -46,6 +46,8 @@
     (actionToParent)="login(signinForm.value)"
     [isDisabled]="!signinForm.valid || isSubmitted"
     btnLabel="Login"
+    classes="w-full"
+    styles="padding:8px; border-radius:20px;"
     [isLoading]="isSubmitted"
   >
   </app-primary-button>

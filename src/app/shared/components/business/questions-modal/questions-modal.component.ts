@@ -12,10 +12,10 @@ import { PrimaryButtonComponent } from '../../ui/primary-button/primary-button.c
 export class QuestionsModalComponent implements OnInit {
   formGroup!: FormGroup;
   categories: any[] = [
-    { name: 'Accounting', key: 'A' },
-    { name: 'Marketing', key: 'M' },
-    { name: 'Production', key: 'P' },
-    { name: 'Research', key: 'R' },
+    { name: 'Numquam ipsum et nostrum non iste porro laudantium.', key: 'A' },
+    { name: 'Corrupti porro et hic voluptas odio.', key: 'M' },
+    { name: 'Voluptate itaque sunt ut soluta est sunt illum.', key: 'P' },
+    { name: 'Voluptas necessitatibus et ut sit suscipit a.', key: 'R' },
   ];
   ngOnInit(): void {
     this.formGroup = new FormGroup({
