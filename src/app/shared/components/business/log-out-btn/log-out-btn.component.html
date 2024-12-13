@@ -4,3 +4,13 @@
     ><span>Log Out</span></a
   >
 </li>
+
+@if(showModal){
+<app-custom-modal style="z-index: 111">
+  <app-logout-modal
+    (leaveAppDecision)="leaveAppDecision($event)"
+  ></app-logout-modal>
+</app-custom-modal>
+}@else{
+<div class="hide"></div>
+}

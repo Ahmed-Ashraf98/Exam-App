@@ -2,13 +2,15 @@
 <p>Are you sure that you need to logout ?</p>
 <div class="flex justify-content-center">
   <app-primary-button
+    (actionToParent)="leaveApp(true)"
     btnLabel="Yes"
     classes="mr-2 w-8rem"
-    styles="background-color:var(--main-color); border:1px solid var(--main-color); padding:10px 24px; border-radius:100px;height: 40px;"
+    styles="padding:10px 24px; border-radius:100px;height: 40px;"
   ></app-primary-button>
   <app-primary-button
+    (actionToParent)="leaveApp(false)"
     btnLabel="Cancel"
     classes="w-8rem"
-    styles="background-color:#fff;color:var(--main-color); border:1px solid var(--main-color);padding:10px 24px;border-radius:100px;height: 40px;"
+    styles="padding:10px 24px;border-radius:100px;height: 40px;"
   ></app-primary-button>
 </div>

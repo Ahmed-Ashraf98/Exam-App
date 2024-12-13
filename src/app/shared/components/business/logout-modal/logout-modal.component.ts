@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { PrimaryButtonComponent } from '../../ui/primary-button/primary-button.component';
 
 @Component({
@@ -8,4 +8,10 @@ import { PrimaryButtonComponent } from '../../ui/primary-button/primary-button.c
   templateUrl: './logout-modal.component.html',
   styleUrl: './logout-modal.component.scss',
 })
-export class LogoutModalComponent {}
+export class LogoutModalComponent {
+  @Output() leaveAppDecision = new EventEmitter<boolean>();
+
+  leaveApp(val: boolean) {
+    this.leaveAppDecision.emit(val);
+  }
+}

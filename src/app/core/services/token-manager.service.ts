@@ -17,4 +17,8 @@ export class TokenManagerService {
   get getToken(): string | null {
     return this._LocalStorageManagerService.getData(this.tokenKeyName);
   }
+
+  clearToken() {
+    this._LocalStorageManagerService.removeData(this.tokenKeyName);
+  }
 }
