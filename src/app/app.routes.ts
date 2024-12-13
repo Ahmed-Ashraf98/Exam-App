@@ -35,6 +35,13 @@ export const routes: Routes = [
             './core/layout/forgot-pass-layout/forgot-pass-layout.component'
           ).then((c) => c.ForgotPassLayoutComponent),
       },
+      {
+        path: 'forgotPWD',
+        loadComponent: () =>
+          import(
+            './core/layout/forgot-pass-layout/forgot-pass-layout.component'
+          ).then((c) => c.ForgotPassLayoutComponent),
+      },
     ],
   },
 
@@ -59,6 +66,13 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./core/pages/exams/exams.component').then(
             (c) => c.ExamsComponent
+          ),
+      },
+      {
+        path: 'quizHistory',
+        loadComponent: () =>
+          import('./core/pages/quiz-history/quiz-history.component').then(
+            (c) => c.QuizHistoryComponent
           ),
       },
     ],
