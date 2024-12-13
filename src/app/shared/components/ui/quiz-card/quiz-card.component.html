@@ -11,9 +11,16 @@
   <div class="right-side">
     <p class="m-0 p-1 duration">{{ duration }} Minutes</p>
     <app-primary-button
+      (actionToParent)="startExam()"
       btnLabel="Start"
       classes="w-auto"
       styles="padding:4px 24px; border-radius:50px"
     ></app-primary-button>
   </div>
 </li>
+
+@if (showModal) {
+<app-custom-modal>
+  <app-questions-modal></app-questions-modal>
+</app-custom-modal>
+}

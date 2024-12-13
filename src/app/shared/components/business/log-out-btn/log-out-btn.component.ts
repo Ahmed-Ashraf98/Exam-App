@@ -46,12 +46,8 @@ export class LogOutBtnComponent {
       next: (res) => {
         console.log(res);
         console.log('Ok Bye');
-        //TODO: Navigate to signon page
-
         this._TokenManagerService.clearToken();
         this._Router.navigate(['auth/signin']);
-        this.showModal = false;
-        console.log(this.showModal);
       },
     });
   }
