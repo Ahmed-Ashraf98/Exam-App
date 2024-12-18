@@ -9,7 +9,8 @@ export const loggedInUserGuard: CanActivateFn = (route, state) => {
   if (!tokenManager.getToken) {
     return true;
   } else {
-    router.navigate(['/main/dashboard']);
-    return false;
+    // router.navigate(['/main/dashboard']);
+    // return false;
+    return router.parseUrl('/main/dashboard'); // Return a UrlTree for redirection
   }
 };

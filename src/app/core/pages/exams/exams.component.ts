@@ -4,12 +4,11 @@ import { ExamsAPIService } from '../../../features/services/exams-api.service';
 import { SubjectsAPIService } from '../../../features/services/subjects-api.service';
 import { QuizCardComponent } from '../../../shared/components/ui/quiz-card/quiz-card.component';
 import { CustomModalComponent } from '../../../shared/components/ui/custom-modal/custom-modal.component';
-import { QuestionsModalComponent } from '../../../shared/components/business/questions-modal/questions-modal.component';
 
 @Component({
   selector: 'app-exams',
   standalone: true,
-  imports: [QuizCardComponent, CustomModalComponent, QuestionsModalComponent],
+  imports: [QuizCardComponent, CustomModalComponent],
   templateUrl: './exams.component.html',
   styleUrl: './exams.component.scss',
 })

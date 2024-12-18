@@ -3,14 +3,18 @@ import { authGuard } from './core/guard/auth.guard';
 import { loggedInUserGuard } from './core/guard/logged-in-user.guard';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'auth', pathMatch: 'full' },
+  {
+    path: '',
+    redirectTo: 'auth',
+    pathMatch: 'full',
+  },
   {
     path: 'auth',
+    canActivate: [loggedInUserGuard],
     loadComponent: () =>
       import('./core/layout/auth-layout/auth-layout.component').then(
         (c) => c.AuthLayoutComponent
       ),
-    canActivate: [loggedInUserGuard],
 
     children: [
       { path: '', redirectTo: 'signin', pathMatch: 'full' },
@@ -27,13 +31,6 @@ export const routes: Routes = [
           import('./core/pages/signup/signup.component').then(
             (c) => c.SignupComponent
           ),
-      },
-      {
-        path: 'forgotPWD',
-        loadComponent: () =>
-          import(
-            './core/layout/forgot-pass-layout/forgot-pass-layout.component'
-          ).then((c) => c.ForgotPassLayoutComponent),
       },
       {
         path: 'forgotPWD',

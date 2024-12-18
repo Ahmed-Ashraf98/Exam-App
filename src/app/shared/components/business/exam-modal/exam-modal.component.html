@@ -1,1 +1,62 @@
-<p>exam-modal works!</p>
+<header class="exam-header">
+  <div class="top-header flex align-items-center justify-content-between">
+    <div class="left-side">
+      <span
+        >Question <span>1</span> of
+        <span>{{ questionsSteps.length }}</span></span
+      >
+    </div>
+    <div class="right-side flex align-items-center">
+      <img src="assets/images/timer.png" alt="" srcset="" />
+      <span class="ml-2 timer">{{
+        displayExamTime ? displayExamTime : "00:00"
+      }}</span>
+    </div>
+  </div>
+  <ul class="unstyled-list p-0 quiz-step-wrapper flex justify-content-around">
+    @for (step of questionsSteps; track $index) { @if( $index<=
+    currentQuetionIndex){
+    <li class="quiz-step answered"></li>
+    }@else {
+    <li class="quiz-step"></li>
+    } }
+  </ul>
+</header>
+<section class="question-sestion">
+  <p>{{ qn_title }}</p>
+  <form class="flex flex-column gap-3" [formGroup]="qn_Form">
+    @for (answerObj of qn_answersList; track $index) {
+
+    <div class="answer-box flex">
+      <p-radioButton
+        (ngModelChange)="onOptionChange($event)"
+        [inputId]="answerObj.key"
+        [value]="answerObj.key"
+        formControlName="selectedAnswer"
+      />
+      <label [for]="answerObj.key" class="ml-2">
+        {{ answerObj.answer }}
+      </label>
+    </div>
+
+    }
+    <div class="bts-group flex justify-content-between">
+      <app-primary-button
+        (actionToParent)="getPrevQN()"
+        class="w-full flex-grow-1 mr-2"
+        btnLabel="Back"
+        [isDisabled]="isPrevBtnDisabled"
+        classes="btn-outline-prim w-full"
+        styles="border-radius:100px; padding:10px 24px"
+      ></app-primary-button>
+      <app-primary-button
+        (actionToParent)="getNextQN()"
+        class="w-full flex-grow-1"
+        btnLabel="Next"
+        [isDisabled]="isNextBtnDisabled"
+        classes="w-full"
+        styles="border-radius:100px; padding:10px 24px"
+      ></app-primary-button>
+    </div>
+  </form>
+</section>

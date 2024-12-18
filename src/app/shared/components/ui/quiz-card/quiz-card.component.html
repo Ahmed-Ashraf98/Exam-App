@@ -21,6 +21,10 @@
 
 @if (showModal) {
 <app-custom-modal>
-  <app-questions-modal></app-questions-modal>
+  <app-exam-modal
+    [examId]="id"
+    [numOfQuestions]="numOfQuestions"
+    [duration]="duration"
+  ></app-exam-modal>
 </app-custom-modal>
 }
