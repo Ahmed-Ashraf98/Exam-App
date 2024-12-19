@@ -1,7 +1,10 @@
 <div class="custom-modal">
   <div
     class="custom-modal-wrapper"
-    [style]="modalWidth ? 'width:' + modalWidth + 'px' : ''"
+    [style]="
+      (modalWidth ? 'width:' + modalWidth + 'px ' : ' ') +
+      (modalMinWidth ? 'min-width:' + modalMinWidth + 'px ' : ' ')
+    "
   >
     <ng-content></ng-content>
   </div>

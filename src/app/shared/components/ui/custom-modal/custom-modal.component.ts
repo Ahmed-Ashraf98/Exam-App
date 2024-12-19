@@ -10,4 +10,5 @@ import { PrimaryButtonComponent } from '../primary-button/primary-button.compone
 })
 export class CustomModalComponent {
   @Input() modalWidth?: number;
+  @Input() modalMinWidth?: number;
 }

@@ -153,3 +153,9 @@ input.custom-input {
   color: var(--main-color);
   margin: 8px 0 20px 0;
 }
+
+canvas {
+  margin: 0 auto;
+  height: 170px !important;
+  width: 170px !important;
+}

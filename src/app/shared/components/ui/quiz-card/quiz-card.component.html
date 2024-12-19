@@ -20,7 +20,8 @@
 </li>
 
 @if (showModal) {
-<app-custom-modal>
+<!-- [modalMinWidth]="500" -->
+<app-custom-modal [modalMinWidth]="500">
   <app-exam-modal
     [examId]="id"
     [numOfQuestions]="numOfQuestions"
