@@ -1,4 +1,4 @@
-<app-custom-section sectionWrapperClasses="flex">
+<app-custom-section sectionWrapperClasses="flex flex-wrap">
   <div class="img-container">
     @if(isUserInfoLoaded){
     <img
@@ -28,18 +28,19 @@
     <app-custom-progress-bar progeressPrecentage="50"></app-custom-progress-bar>
     <ul class="m-0 p-0 unstyled-list user-reports-details flex flex-wrap">
       <app-report-card
-        classes="mr-6"
+        classes="mr-6 my-2"
         reportIcon="fa-solid fa-flag"
         reportTitle="Quiz Passed"
         reportResult="27"
       ></app-report-card>
       <app-report-card
-        classes="mr-6"
+        classes="mr-6 my-2"
         reportIcon="fa-solid fa-clock"
         reportTitle="Fastest Time"
         reportResult="13 min"
       ></app-report-card>
       <app-report-card
+        classes="my-2"
         reportIcon="fa-solid fa-circle-check"
         reportTitle="Correct Answers"
         reportResult="200"
