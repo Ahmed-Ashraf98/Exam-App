@@ -59,6 +59,7 @@ export class ExamsComponent implements OnInit {
         this.getSubjectDetails(this.q_subjectId!);
       } else {
         this.getAllExams();
+        this.isSubjectLoaded = true;
       }
     });
   }
