@@ -13,6 +13,8 @@
 }
 
 .custom-modal-wrapper {
+  max-height: 600px;
+  overflow: auto;
   background-color: #fff;
   padding: 24px;
   pointer-events: visible;

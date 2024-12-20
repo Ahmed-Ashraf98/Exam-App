@@ -62,25 +62,10 @@
   </form>
 </section>
 }@else if(showChartResult) {
-<h3>Your score</h3>
-<div class="card flex justify-content-center align-items-center my-2">
-  <p-chart type="doughnut" [data]="data" [options]="options" />
-  <div class="result-text ml-5 flex-grow-1">
-    <div class="flex justify-content-around correct">
-      <span>Correct</span>
-      <div class="result-circle">
-        {{ numberOfCorrectAnswers }}
-      </div>
-    </div>
-
-    <div class="flex justify-content-around in-correct mt-3">
-      <span>Incorrect</span>
-      <div class="result-circle">
-        {{ questionsList.length - numberOfCorrectAnswers }}
-      </div>
-    </div>
-  </div>
-</div>
+<app-exam-result-modal
+  [correctAnswersCount]="numberOfCorrectAnswers"
+  [wrongAnswersCount]="questionsList.length - numberOfCorrectAnswers"
+></app-exam-result-modal>
 <div class="bts-group flex justify-content-between">
   <app-primary-button
     (actionToParent)="closeExamPoup()"
@@ -94,32 +79,16 @@
     (actionToParent)="displayWrongAnswers()"
     class="w-full flex-grow-1"
     btnLabel="Show Results"
-    [isDisabled]="false"
+    [isDisabled]="wrongQNsList.length === 0"
     classes="w-full"
     styles="border-radius:100px; padding:10px 24px"
   ></app-primary-button>
 </div>
 }@else if(showWrongAnswers) {
-<div class="result-wrapper flex flex-row flex-wrap">
-  @for (qn of wrongQNsList; track $index) {
-  <section class="question-result-box">
-    <p>{{ qn.questionObj.question }}</p>
-    <div class="flex flex-wrap flex-column gap-3">
-      @for (answerObj of qn.questionObj.answers; track $index) {
 
-      <div class="answer-box flex">
-        <p-radioButton [inputId]="answerObj.key" [value]="answerObj.key" />
-        <label [for]="answerObj.key" class="ml-2">
-          {{ answerObj.answer }}
-        </label>
-      </div>
-
-      }
-    </div>
-  </section>
-  }
-</div>
-
+<app-exam-wrong-answers-report-modal
+  [wrongQNsList]="wrongQNsList"
+></app-exam-wrong-answers-report-modal>
 <div class="bts-group flex justify-content-between">
   <app-primary-button
     (actionToParent)="closeExamPoup()"
@@ -130,5 +99,4 @@
     styles="border-radius:100px; padding:10px 24px"
   ></app-primary-button>
 </div>
-
 }

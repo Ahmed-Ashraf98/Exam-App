@@ -1,0 +1,23 @@
+.correct {
+  color: #02369c;
+}
+
+.in-correct {
+  color: #cc1010;
+}
+
+.result-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.correct .result-circle {
+  border: 1px solid #02369c;
+}
+
+.in-correct .result-circle {
+  border: 1px solid #cc1010;
+}

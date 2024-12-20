@@ -21,4 +21,8 @@ export class QuizCardComponent {
   startExam() {
     this.showModal = true;
   }
+
+  modalAction(event: any) {
+    event === 'close' ? (this.showModal = false) : null;
+  }
 }

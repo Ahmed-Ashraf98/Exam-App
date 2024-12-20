@@ -1,17 +1,12 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  effect,
-  inject,
-  Input,
-  PLATFORM_ID,
-} from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { QuestionsAPIService } from '../../../../features/services/questions-api.service';
 import { PrimaryButtonComponent } from '../../ui/primary-button/primary-button.component';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { ChartModule } from 'primeng/chart';
-import { isPlatformBrowser } from '@angular/common';
+import { ExamWrongAnswersReportModalComponent } from '../exam-wrong-answers-report-modal/exam-wrong-answers-report-modal.component';
+import { ExamResultModalComponent } from '../exam-result-modal/exam-result-modal.component';
 
 @Component({
   selector: 'app-exam-modal',
@@ -20,7 +15,10 @@ import { isPlatformBrowser } from '@angular/common';
     RadioButtonModule,
     PrimaryButtonComponent,
     ReactiveFormsModule,
+    FormsModule,
     ChartModule,
+    ExamWrongAnswersReportModalComponent,
+    ExamResultModalComponent,
   ],
   templateUrl: './exam-modal.component.html',
   styleUrl: './exam-modal.component.scss',
@@ -30,6 +28,8 @@ export class ExamModalComponent {
   @Input() examId: string = '';
   @Input() numOfQuestions: number = 0;
   @Input() duration: number = 0;
+  // Data Passed From Exam Model Element
+  @Output() modalController = new EventEmitter<string>();
   // List Of All Questions
   questionsList: any = [];
   //Manage Exam View
@@ -77,13 +77,10 @@ export class ExamModalComponent {
 
   saveAnswerdQN(qn_obj: any, userAnswer: string) {
     let answerIsCorrect = userAnswer === qn_obj.correct;
-    let fullQNData = {
-      questionObj: qn_obj,
-      userAnswer: userAnswer,
-      isCorrect: answerIsCorrect,
-    };
+    qn_obj.userAnswer = userAnswer;
+    qn_obj.isCorrect = answerIsCorrect;
     this.updateCorrectAnswerCount(answerIsCorrect ? 1 : 0);
-    this.answeredQNsList[this.currentQuetionIndex] = fullQNData;
+    this.answeredQNsList[this.currentQuetionIndex] = qn_obj;
   }
 
   updateCorrectAnswerCount(num: number) {
@@ -132,6 +129,7 @@ export class ExamModalComponent {
       console.log('You reached to the end of the exam');
       console.log('All answered questions ');
       console.log('Number of correct ansers = ' + this.numberOfCorrectAnswers);
+      this.getAllWrongAnswers();
       this.displayChartReport();
       return;
     }
@@ -198,26 +196,12 @@ export class ExamModalComponent {
   setQuestionInForm(indexOfQN: number) {
     this.resetQNForm();
 
-    let q_title = '';
-    let q_correct = '';
-    let q_answers_list = [];
-
     const isAnsweredBefore = this.isAnsweredBefore(indexOfQN);
     this.qn_Obj = this.getQuestionObject(indexOfQN, isAnsweredBefore);
 
-    q_title = !isAnsweredBefore
-      ? this.qn_Obj.question
-      : this.qn_Obj.questionObj.question;
-    q_correct = !isAnsweredBefore
-      ? this.qn_Obj.correct
-      : this.qn_Obj.questionObj.correct;
-    q_answers_list = !isAnsweredBefore
-      ? [...this.qn_Obj.answers]
-      : [...this.qn_Obj.questionObj.answers];
-
-    this.qn_title = q_title;
-    this.qn_correctAnswer = q_correct;
-    this.qn_answersList = q_answers_list;
+    this.qn_title = this.qn_Obj.question;
+    this.qn_correctAnswer = this.qn_Obj.correct;
+    this.qn_answersList = [...this.qn_Obj.answers];
 
     // if this answered before, then set the selected answer
     isAnsweredBefore &&
@@ -253,65 +237,25 @@ export class ExamModalComponent {
 
   closeExamPoup() {
     this.resetShowActions();
+    this.modalController.emit('close');
   }
 
   displayChartReport() {
     this.resetShowActions();
+
     this.showChartResult = true;
-    this.initChart();
   }
 
   displayWrongAnswers() {
-    this.getAllWrongAnswers();
     this.resetShowActions();
     this.showWrongAnswers = true;
   }
-
-  // ============================ Chart Utilities ====================
-
-  data: any;
-
-  options: any;
-
-  platformId = inject(PLATFORM_ID);
-
-  initChart() {
-    let countOfWrong = this.questionsList.length - this.numberOfCorrectAnswers;
-
-    if (isPlatformBrowser(this.platformId)) {
-      this.data = {
-        datasets: [
-          {
-            data: [this.numberOfCorrectAnswers, countOfWrong],
-            backgroundColor: ['#02369C', '#CC1010'],
-            hoverBackgroundColor: ['#02229C', '#CC2229'],
-          },
-        ],
-      };
-
-      this.options = {
-        cutout: '85%',
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            labels: {
-              color: '#fff',
-            },
-          },
-        },
-      };
-    }
-  }
-
-  // ============================ Summary Utilities ====================
 
   getAllWrongAnswers() {
     this.wrongQNsList = this.answeredQNsList.filter((qn: any) => !qn.isCorrect);
     console.log('All Wrong Answers');
     console.log(this.wrongQNsList);
   }
-
   // ============================ Life Cycle Hooks ===================
   ngOnInit(): void {
     this.qn_Form = new FormGroup({

@@ -1,0 +1,45 @@
+<div class="result-wrapper">
+  <form [formGroup]="qn_Form" class="flex flex-row flex-wrap">
+    @for (qn of wrongQNsList; track $index) {
+
+    <section class="question-result-box flex flex-wrap flex-column gap-3">
+      <p>{{ qn.question }}</p>
+      @for (answerObj of qn.answers; track $index) { @if(answerObj.key ===
+      qn.userAnswer){
+      <div class="answer-box flex wrong-answer-box">
+        <p-radioButton
+          [inputId]="answerObj.key"
+          [value]="answerObj.key"
+          formControlName="answer_q{{ qn._id }}_1"
+        />
+        <label [for]="answerObj.key" class="ml-2">
+          {{ answerObj.answer }}
+        </label>
+      </div>
+      }@else if (answerObj.key === qn.correct) {
+      <div class="answer-box flex correct-answer-box">
+        <p-radioButton
+          [inputId]="answerObj.key"
+          [value]="answerObj.key"
+          formControlName="answer_q{{ qn._id }}_1"
+        />
+        <label [for]="answerObj.key" class="ml-2">
+          {{ answerObj.answer }}
+        </label>
+      </div>
+      }@else {
+      <div class="answer-box flex">
+        <p-radioButton
+          [inputId]="answerObj.key"
+          [value]="answerObj.key"
+          formControlName="answer_q{{ qn._id }}_1"
+        />
+        <label [for]="answerObj.key" class="ml-2">
+          {{ answerObj.answer }}
+        </label>
+      </div>
+      } }
+    </section>
+    }
+  </form>
+</div>
