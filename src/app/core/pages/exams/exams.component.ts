@@ -3,12 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 import { ExamsAPIService } from '../../../features/services/exams-api.service';
 import { SubjectsAPIService } from '../../../features/services/subjects-api.service';
 import { QuizCardComponent } from '../../../shared/components/ui/quiz-card/quiz-card.component';
-import { CustomModalComponent } from '../../../shared/components/ui/custom-modal/custom-modal.component';
-
+import { SkeletonModule } from 'primeng/skeleton';
 @Component({
   selector: 'app-exams',
   standalone: true,
-  imports: [QuizCardComponent, CustomModalComponent],
+  imports: [QuizCardComponent, SkeletonModule],
   templateUrl: './exams.component.html',
   styleUrl: './exams.component.scss',
 })
@@ -21,11 +20,14 @@ export class ExamsComponent implements OnInit {
   subjectTitle: string = '';
   examsList: any = [];
 
+  isSubjectLoaded = false;
+  isExamsDataLoaded = false;
+
   getExamsOfSubject(subjectId: string) {
     this._ExamsAPIService.getAllExamsOnSubject(subjectId).subscribe({
       next: (res) => {
         this.examsList = res.exams;
-        console.log(this.examsList);
+        this.isExamsDataLoaded = true;
       },
     });
   }
@@ -34,6 +36,7 @@ export class ExamsComponent implements OnInit {
     this._ExamsAPIService.getAllExams().subscribe({
       next: (res) => {
         this.examsList = res.exams;
+        this.isExamsDataLoaded = true;
       },
     });
   }
@@ -42,7 +45,7 @@ export class ExamsComponent implements OnInit {
     this._SubjectsAPIService.getSubjectById(subjectId).subscribe({
       next: (res) => {
         this.subjectTitle = res.category.name;
-        console.log(this.subjectTitle);
+        this.isSubjectLoaded = true;
       },
     });
   }

@@ -1,21 +1,42 @@
 <li class="flex justify-content-between align-items-center mt-3">
   <div class="left-side flex align-items-center">
     <div class="quiz-icon">
+      @if(!loadingMode) {
       <img src="/assets/images/quiz-icon.jpg" alt="" />
+      }@else {<p-skeleton size="80px" /> }
     </div>
     <div class="quiz-overview ml-3">
-      <p class="m-0 p-0 title">{{ title }}</p>
-      <span class="num-of-qs">{{ numOfQuestions }} Question</span>
+      <p class="m-0 p-0 title">
+        @if(!loadingMode) {
+        {{ title }}
+        }@else { <p-skeleton width="10rem" styleClass="mb-2" />}
+      </p>
+
+      <span class="num-of-qs">
+        @if(!loadingMode) {
+        {{ numOfQuestions }} Question }@else {
+        <p-skeleton width="5rem" styleClass="mb-2" />}
+      </span>
     </div>
   </div>
   <div class="right-side">
-    <p class="m-0 p-1 duration">{{ duration }} Minutes</p>
+    <p class="m-0 p-1 duration">
+      @if (!loadingMode) {
+      {{ duration }} Minutes }@else {
+      <p-skeleton width="5rem" styleClass="mb-2" />
+      }
+    </p>
+
+    @if (!loadingMode) {
     <app-primary-button
       (actionToParent)="startExam()"
       btnLabel="Start"
       classes="w-auto"
       styles="padding:4px 24px; border-radius:50px"
     ></app-primary-button>
+    }@else {
+    <p-skeleton width="87px" height="35px" borderRadius="50px" />
+    }
   </div>
 </li>
 

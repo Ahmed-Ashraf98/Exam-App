@@ -1,12 +1,21 @@
-@if(q_subjectId){
+@if (isSubjectLoaded) {
 <p>{{ subjectTitle }}</p>
+
+}@else {
+<p><p-skeleton width="10rem" styleClass="mb-2" /></p>
 }
 <ul class="unstyled-list m-0 p-0 flex flex-column m-4">
-  @for (exam of examsList; track exam._id) {
+  @if (isExamsDataLoaded) { @for (exam of examsList; track exam._id) {
+
   <app-quiz-card
     [title]="exam.title"
     [numOfQuestions]="exam.numberOfQuestions"
     [duration]="exam.duration"
   ></app-quiz-card>
+
+  } }@else {
+  <app-quiz-card [loadingMode]="true"></app-quiz-card>
+  <app-quiz-card [loadingMode]="true"></app-quiz-card>
+  <app-quiz-card [loadingMode]="true"></app-quiz-card>
   }
 </ul>
