@@ -8,6 +8,7 @@ import { baseUrl } from '../../environment/environment.prod';
 import { SubjectsAPIService } from '../../../features/services/subjects-api.service';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { Router } from '@angular/router';
+import { Skeleton, SkeletonModule } from 'primeng/skeleton';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,6 +19,7 @@ import { Router } from '@angular/router';
     CustomSectionComponent,
     SubjectCardComponent,
     ScrollingModule,
+    SkeletonModule,
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
@@ -32,12 +34,14 @@ export class DashboardComponent implements OnInit {
   userObj: any;
   allSubjects: any = [];
 
-  items = Array.from({ length: 1000 }, (_, i) => `Item ${i + 1}`);
+  isUserInfoLoaded = false;
+  isSubjectsDataLoaded = false;
+
   getUserInfo() {
     this._AuthApiManagerService.profileData(baseUrl).subscribe({
       next: (res) => {
-        console.log('Hellloz', res);
         this.userObj = res.user;
+        this.isUserInfoLoaded = true;
       },
     });
   }
@@ -46,6 +50,7 @@ export class DashboardComponent implements OnInit {
     this._SubjectsAPIService.getAllSubjects(page, limit).subscribe({
       next: (res) => {
         this.allSubjects = this.allSubjects.concat(res.subjects);
+        this.isSubjectsDataLoaded = true;
       },
     });
   }

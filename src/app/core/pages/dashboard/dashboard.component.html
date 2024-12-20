@@ -1,5 +1,6 @@
 <app-custom-section sectionWrapperClasses="flex">
   <div class="img-container">
+    @if(isUserInfoLoaded){
     <img
       src="assets/images/robot.png"
       alt=""
@@ -7,12 +8,23 @@
       height="216"
       style="display: block; object-fit: cover"
     />
+
+    }@else {<p-skeleton size="216px" />}
   </div>
   <div class="user-reports ml-6">
     <h2 class="mb-0" style="color: var(--main-color)">
-      {{ userObj.firstName }} {{ userObj.lastName }}
+      @if(isUserInfoLoaded){
+      {{ userObj.firstName }} {{ userObj.lastName }} } @else {<p-skeleton
+        width="25rem"
+        styleClass="mb-2"
+      />
+      }
     </h2>
-    <p class="mt-1" style="color: var(--gray-color)">{{ userObj.email }}</p>
+    <p class="mt-1" style="color: var(--gray-color)">
+      @if(isUserInfoLoaded){
+      {{ userObj.email }}
+      }@else {<p-skeleton width="10rem" styleClass="mb-2" />}
+    </p>
     <app-custom-progress-bar progeressPrecentage="50"></app-custom-progress-bar>
     <ul class="m-0 p-0 unstyled-list user-reports-details flex flex-wrap">
       <app-report-card
@@ -43,13 +55,18 @@
   </header>
 
   <ul class="unstyled-list p-0 flex flex-wrap">
-    @for (subject of allSubjects; track subject._id) {
+    @if(isSubjectsDataLoaded){ @for (subject of allSubjects; track subject._id)
+    {
     <app-subject-card
       (actionToParent)="goToExamsOfSubject(subject._id)"
       [id]="subject._id"
       [icon]="subject.icon"
       [name]="subject.name"
     ></app-subject-card>
+    } }@else {
+    <li><p-skeleton size="310px" /></li>
+    <li class="ml-5"><p-skeleton size="310px" /></li>
+    <li class="ml-5"><p-skeleton size="310px" /></li>
     }
   </ul>
 
