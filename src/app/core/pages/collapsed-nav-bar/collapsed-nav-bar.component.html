@@ -1,0 +1,51 @@
+<div class="navbar-container">
+  <nav class="custom-sm-navbar p-2">
+    <div class="nav-wrapper flex justify-content-between align-items-center">
+      <div class="icons-group">
+        <i
+          (click)="toggleMenuOptions()"
+          class="fa-solid fa-bars-staggered cursor-pointer"
+        ></i>
+        <i class="fa-solid fa-magnifying-glass cursor-pointer mx-2"></i>
+      </div>
+      <div class="person-img">
+        <img
+          src="assets/images/robot.png"
+          alt="person image"
+          [class]="!isImageLoaded ? 'd-none' : ''"
+          (load)="onImageLoad()"
+        />
+        <p-skeleton
+          [class]="isImageLoaded ? 'd-none' : ''"
+          shape="circle"
+          size="40px"
+        />
+      </div>
+    </div>
+  </nav>
+  <div [class]="'nav-options ' + (showNavOptions ? 'active' : 'in-active')">
+    <header class="flex justify-content-between align-items-center">
+      <div class="img-container">
+        <img src="/assets/images/elevate-logo.png" alt="" />
+      </div>
+      <i
+        (click)="toggleMenuOptions()"
+        class="fa-solid fa-xmark cursor-pointer"
+      ></i>
+    </header>
+    <ul class="unstyled-list gap-2">
+      <app-main-menu-item
+        itemRouter="dashboard"
+        itemIcon="fa-solid fa-table-columns"
+        itemName="Dashboard"
+      ></app-main-menu-item>
+      <app-main-menu-item
+        itemRouter="quizHistory"
+        itemIcon="fa-solid fa-clock-rotate-left"
+        itemName="Quiz History"
+      ></app-main-menu-item>
+
+      <app-log-out-btn></app-log-out-btn>
+    </ul>
+  </div>
+</div>

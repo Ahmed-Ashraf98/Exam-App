@@ -1,4 +1,5 @@
 <div class="main-layout min-vh-100">
+  @if(innerWidth >= 850){
   <div class="main-layout-wrapper grid">
     <div class="start-side col-2">
       <div class="side-wrapper m-2 mt-5">
@@ -20,10 +21,10 @@
           <app-log-out-btn></app-log-out-btn>
 
           <!-- <app-main-menu-item
-            itemIcon="fa-solid fa-arrow-right-from-bracket"
-            itemName="Log Out"
-            classes="cursor-pointer"
-          ></app-main-menu-item> -->
+              itemIcon="fa-solid fa-arrow-right-from-bracket"
+              itemName="Log Out"
+              classes="cursor-pointer"
+            ></app-main-menu-item> -->
         </ul>
       </div>
     </div>
@@ -34,5 +35,13 @@
       </div>
     </div>
   </div>
+  }@else {
+  <app-collapsed-nav-bar></app-collapsed-nav-bar>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+
+  }
 </div>
+
 <!-- <app-custom-modal></app-custom-modal> -->
