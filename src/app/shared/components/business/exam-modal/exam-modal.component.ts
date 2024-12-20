@@ -7,7 +7,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { ChartModule } from 'primeng/chart';
 import { ExamWrongAnswersReportModalComponent } from '../exam-wrong-answers-report-modal/exam-wrong-answers-report-modal.component';
 import { ExamResultModalComponent } from '../exam-result-modal/exam-result-modal.component';
-
+import { SkeletonModule } from 'primeng/skeleton';
 @Component({
   selector: 'app-exam-modal',
   standalone: true,
@@ -19,6 +19,7 @@ import { ExamResultModalComponent } from '../exam-result-modal/exam-result-modal
     ChartModule,
     ExamWrongAnswersReportModalComponent,
     ExamResultModalComponent,
+    SkeletonModule,
   ],
   templateUrl: './exam-modal.component.html',
   styleUrl: './exam-modal.component.scss',
@@ -33,6 +34,7 @@ export class ExamModalComponent {
   // List Of All Questions
   questionsList: any = [];
   //Manage Exam View
+  canStartExam: boolean = false;
   showExam: boolean = true;
   showChartResult: boolean = false;
   showWrongAnswers: boolean = false;
@@ -210,6 +212,7 @@ export class ExamModalComponent {
 
   initExam() {
     this.setQuestionInForm(0); // start with first question number
+    this.startExamTimer();
   }
 
   getAllquestions() {
@@ -222,6 +225,8 @@ export class ExamModalComponent {
           this.questionsSteps = this.generateArrFromNum(
             this.questionsList.length
           );
+          this.showExam = true;
+          this.canStartExam = true;
           this.initExam();
         },
       });
@@ -261,7 +266,7 @@ export class ExamModalComponent {
     this.qn_Form = new FormGroup({
       selectedAnswer: new FormControl(),
     });
-    this.startExamTimer();
+
     this.getAllquestions();
   }
 }
