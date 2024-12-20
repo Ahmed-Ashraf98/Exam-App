@@ -8,7 +8,7 @@ import { baseUrl } from '../../environment/environment.prod';
 import { SubjectsAPIService } from '../../../features/services/subjects-api.service';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { Router } from '@angular/router';
-import { Skeleton, SkeletonModule } from 'primeng/skeleton';
+import { SkeletonModule } from 'primeng/skeleton';
 
 @Component({
   selector: 'app-dashboard',

@@ -29,62 +29,7 @@
     </div>
     <div class="end-side col-10">
       <div class="side-wrapper px-4 pt-2">
-        <header class="header flex align-items-center">
-          <div
-            class="input-group flex-grow-1 mr-2 flex align-items-center"
-            style="
-              overflow: hidden;
-              position: relative;
-              box-shadow: 0px 15px 40px 0px #0000001a;
-              border-radius: 20px;
-              background: #f9f9f9;
-            "
-          >
-            <div
-              class="flex align-items-center px-2"
-              style="height: 50px; background: #f9f9f9"
-            >
-              <i
-                class="fa-solid fa-magnifying-glass cursor-pointer"
-                style="color: #1935ca"
-              ></i>
-            </div>
-
-            <input
-              class="custom-input w-full"
-              type="text"
-              name=""
-              id=""
-              style="
-                padding: 15px;
-                border-radius: 10px;
-                border: none;
-                border-top-left-radius: 0;
-                border-bottom-left-radius: 0;
-              "
-              placeholder="Search Quiz"
-            />
-          </div>
-
-          <app-primary-button
-            btnLabel="Start Quiz"
-            classes="mr-2"
-            styles="border-radius:20px; padding:10px 32px"
-          ></app-primary-button>
-          <div class="person-img">
-            <img
-              src="assets/images/robot.png"
-              alt="person image"
-              width="61px"
-              height="61px"
-              style="
-                border-radius: 40px;
-                object-fit: cover;
-                box-shadow: 0px 15px 40px 5px #ededed;
-              "
-            />
-          </div>
-        </header>
+        <app-main-nav-bar></app-main-nav-bar>
         <router-outlet></router-outlet>
       </div>
     </div>
