@@ -1,6 +1,14 @@
 <app-custom-section sectionWrapperClasses="flex flex-wrap">
   <div class="img-container">
-    @if(isUserInfoLoaded){
+    @if(isUserInfoLoaded ){ @if(userPhoto){
+    <img
+      [src]="userPhoto"
+      alt=""
+      width="216"
+      height="216"
+      style="display: block; object-fit: cover"
+    />
+    }@else{
     <img
       src="assets/images/robot.png"
       alt=""
@@ -8,8 +16,7 @@
       height="216"
       style="display: block; object-fit: cover"
     />
-
-    }@else {<p-skeleton size="216px" />}
+    } }@else {<p-skeleton size="216px" />}
   </div>
   <div class="user-reports ml-6">
     <h2 class="mb-0" style="color: var(--main-color)">

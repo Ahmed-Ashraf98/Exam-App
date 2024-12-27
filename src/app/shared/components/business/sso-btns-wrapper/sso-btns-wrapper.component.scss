@@ -1,0 +1,24 @@
+.sso-btns-group {
+  padding: 16px 0;
+  text-align: center;
+}
+
+// .google-btn {
+//   margin: 10px 10px;
+//   display: inline-block;
+//   padding: 15px;
+//   border-radius: 15.38px;
+//   border: 1.02px solid #e0e0e9;
+//   background: #ffffff;
+//   box-shadow: 0px 18px 30px 0px #4461f21c;
+// }
+
+.google-btn {
+  align-self: center;
+}
+::ng-deep {
+  svg.LgbsSe-Bz112c {
+    width: 30px;
+    height: 20px;
+  }
+}

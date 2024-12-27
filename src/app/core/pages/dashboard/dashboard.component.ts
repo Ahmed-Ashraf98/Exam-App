@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 import { SkeletonModule } from 'primeng/skeleton';
 import { ScrollerModule } from 'primeng/scroller';
 import { VirtualScrollerModule } from 'primeng/virtualscroller'; // Import VirtualScrollerModule
+import { TokenManagerService } from '../../services/token-manager.service';
+import { CookieManagerService } from '../../services/cookie-manager.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -32,6 +34,7 @@ export class DashboardComponent implements OnInit {
   // inject services
   private readonly _AuthApiManagerService = inject(AuthApiManagerService);
   private readonly _SubjectsAPIService = inject(SubjectsAPIService);
+  private readonly _CookieManagerService = inject(CookieManagerService);
   private readonly _Router = inject(Router);
 
   // Declare Vars
@@ -40,11 +43,13 @@ export class DashboardComponent implements OnInit {
   items!: string[];
   isUserInfoLoaded = false;
   isSubjectsDataLoaded = false;
+  userPhoto: string | null = null;
 
   getUserInfo() {
     this._AuthApiManagerService.profileData(baseUrl).subscribe({
       next: (res) => {
         this.userObj = res.user;
+        this.userPhoto = this._CookieManagerService.getCookie('photoUrl');
         this.isUserInfoLoaded = true;
       },
     });

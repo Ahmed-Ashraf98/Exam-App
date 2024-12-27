@@ -3,14 +3,9 @@ import { MenuItem, MessageService, PrimeNGConfig } from 'primeng/api';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
-import { SsoButtonComponent } from '../../../shared/components/ui/sso-button/sso-button.component';
 import { Languages } from '../../../shared/enums/langOptions';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-// import {
-//   SocialAuthService,
-//   GoogleSigninButtonModule,
-//   SocialUser,
-// } from '@abacritt/angularx-social-login';
+import { SsoBtnsWrapperComponent } from '../../../shared/components/business/sso-btns-wrapper/sso-btns-wrapper.component';
 
 @Component({
   selector: 'app-auth-layout',
@@ -19,9 +14,9 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
     SplitButtonModule,
     ToastModule,
     ButtonModule,
-    SsoButtonComponent,
     RouterLink,
     RouterLinkActive,
+    SsoBtnsWrapperComponent,
   ],
   templateUrl: './auth-layout.component.html',
   providers: [MessageService], // Add this line to provide the MessageService
@@ -32,8 +27,6 @@ export class AuthLayoutComponent implements OnInit {
   currentLang: Languages = Languages.en;
   otherLang: Languages = Languages.ar;
   items!: MenuItem[];
-  // user!: SocialUser;
-  loggedIn!: boolean;
 
   constructor(private primengConfig: PrimeNGConfig) {
     this.setLangList();
@@ -53,10 +46,6 @@ export class AuthLayoutComponent implements OnInit {
       },
     ];
   }
-
-  /**
-   * @summary Login with Google
-   */
 
   updateLang(newLang: Languages) {
     this.otherLang = this.currentLang;
