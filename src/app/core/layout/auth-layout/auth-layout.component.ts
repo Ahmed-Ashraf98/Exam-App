@@ -6,11 +6,11 @@ import { ButtonModule } from 'primeng/button';
 import { SsoButtonComponent } from '../../../shared/components/ui/sso-button/sso-button.component';
 import { Languages } from '../../../shared/enums/langOptions';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import {
-  SocialAuthService,
-  GoogleSigninButtonModule,
-  SocialUser,
-} from '@abacritt/angularx-social-login';
+// import {
+//   SocialAuthService,
+//   GoogleSigninButtonModule,
+//   SocialUser,
+// } from '@abacritt/angularx-social-login';
 
 @Component({
   selector: 'app-auth-layout',
@@ -22,24 +22,20 @@ import {
     SsoButtonComponent,
     RouterLink,
     RouterLinkActive,
-    GoogleSigninButtonModule,
   ],
   templateUrl: './auth-layout.component.html',
   providers: [MessageService], // Add this line to provide the MessageService
   styleUrl: './auth-layout.component.scss',
 })
 export class AuthLayoutComponent implements OnInit {
-  private readonly _AuthService = inject(SocialAuthService);
+  // private readonly _AuthService = inject(SocialAuthService);
   currentLang: Languages = Languages.en;
   otherLang: Languages = Languages.ar;
   items!: MenuItem[];
-  user!: SocialUser;
+  // user!: SocialUser;
   loggedIn!: boolean;
 
-  constructor(
-    private primengConfig: PrimeNGConfig,
-    private authService: SocialAuthService
-  ) {
+  constructor(private primengConfig: PrimeNGConfig) {
     this.setLangList();
   }
 

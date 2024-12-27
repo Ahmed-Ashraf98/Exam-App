@@ -5,7 +5,7 @@ import { baseUrl } from '../../core/environment/environment.prod';
 
 export const apiInterceptor: HttpInterceptorFn = (req, next) => {
   const _TokenManagerService = inject(TokenManagerService);
-  const authToken = _TokenManagerService.getToken;
+  const authToken = _TokenManagerService.getToken();
 
   const No_Token_URLs = [
     'auth/signup',

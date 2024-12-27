@@ -8,15 +8,16 @@ export class TokenManagerService {
   private readonly tokenKeyName = 'token';
   private readonly _CookieManagerService = inject(CookieManagerService);
 
-  set setToken(token: string) {
+  setToken(token: string) {
     this._CookieManagerService.setCookie(this.tokenKeyName, token);
   }
 
-  get getToken(): string | null {
+  getToken(): string | null {
     return this._CookieManagerService.getCookie(this.tokenKeyName);
   }
 
   clearToken() {
+    console.log('clearing token');
     this._CookieManagerService.deleteCookie(this.tokenKeyName);
   }
 }

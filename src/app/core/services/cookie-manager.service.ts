@@ -11,7 +11,7 @@ export class CookieManagerService {
 
   setCookie(name: string, value: string) {
     if (isPlatformBrowser(this._platform)) {
-      this._CookieService.set(name, value);
+      this._CookieService.set(name, value, 2100);
     }
   }
 
