@@ -53,7 +53,7 @@ export class DashboardComponent implements OnInit {
   getAllSubjects(page?: number, limit?: number) {
     this._SubjectsAPIService.getAllSubjects(page, limit).subscribe({
       next: (res) => {
-        this.allSubjects = this.allSubjects.concat(res.subjects);
+        this.allSubjects = [...this.allSubjects, ...res.subjects];
         this.isSubjectsDataLoaded = true;
       },
     });
@@ -72,7 +72,10 @@ export class DashboardComponent implements OnInit {
   }
 
   onScroll(index: number) {
-    console.log('Scrolling ....', index);
+    console.log('Scrolled to index:', index);
+    if (index + 1 === this.allSubjects.length) {
+      this.getAllSubjects(index, 3);
+    }
   }
 
   ngOnInit(): void {

@@ -54,7 +54,7 @@
     <p>Quizes</p>
     <a>View All</a>
   </header>
-
+  <!-- 
   <ul class="unstyled-list p-0 flex flex-wrap">
     @if(isSubjectsDataLoaded){ @for (subject of allSubjects; track subject._id)
     {
@@ -69,8 +69,31 @@
     <li class="ml-5"><p-skeleton size="310px" /></li>
     <li class="ml-5"><p-skeleton size="310px" /></li>
     }
-  </ul>
+  </ul> -->
 
+  <ul
+    class="unstyled-list p-0 flex flex-column align-items-center flex-wrap justify-content-center"
+  >
+    @if(isSubjectsDataLoaded){
+    <cdk-virtual-scroll-viewport
+      itemSize="200"
+      class="example-viewport"
+      (scrolledIndexChange)="onScroll($event)"
+    >
+      <app-subject-card
+        *cdkVirtualFor="let subject of allSubjects"
+        (actionToParent)="goToExamsOfSubject(subject._id)"
+        [id]="subject._id"
+        [icon]="subject.icon"
+        [name]="subject.name"
+      ></app-subject-card>
+    </cdk-virtual-scroll-viewport>
+    }@else {
+    <li><p-skeleton size="310px" /></li>
+    <li class="my-5"><p-skeleton size="310px" /></li>
+    <li class="my-5"><p-skeleton size="310px" /></li>
+    }
+  </ul>
   <!-- <p-scroller
     [items]="items"
     [itemSize]="200"
