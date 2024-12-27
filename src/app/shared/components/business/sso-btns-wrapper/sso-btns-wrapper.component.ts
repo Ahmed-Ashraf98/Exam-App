@@ -9,7 +9,11 @@ import {
 import { CookieManagerService } from '../../../../core/services/cookie-manager.service';
 import { AuthApiManagerService } from 'auth-api-manager';
 import { TokenManagerService } from '../../../../core/services/token-manager.service';
-import { baseUrl } from '../../../../core/environment/environment.prod';
+import {
+  baseUrl,
+  Default_Pass,
+  Default_Phone,
+} from '../../../../core/environment/environment.prod';
 import { Router } from '@angular/router';
 
 @Component({
@@ -28,6 +32,11 @@ export class SsoBtnsWrapperComponent {
   user: SocialUser | undefined;
   loggedIn: boolean | undefined;
   canNavigate: boolean = false;
+
+  signUp_Obj: any = {};
+  login_Obj: any = {};
+  resetPass_Obj: any = {};
+
   constructor(private authService: SocialAuthService) {}
 
   ngOnInit() {
@@ -38,7 +47,24 @@ export class SsoBtnsWrapperComponent {
       this.loggedIn = user != null;
       if (this.loggedIn) {
         this._CookieManagerService.setCookie('photoUrl', user.photoUrl);
-        this.register(user);
+        this.signUp_Obj = {
+          email: user.email,
+          username: user.email.slice(0, user.email.indexOf('@')),
+          firstName: user.firstName,
+          lastName: user.lastName,
+          phone: Default_Phone,
+          password: Default_Pass,
+          rePassword: Default_Pass,
+        };
+        this.login_Obj = {
+          email: user.email,
+          password: Default_Pass,
+        };
+        this.resetPass_Obj = {
+          email: user.email,
+          newPassword: Default_Pass,
+        };
+        this.register();
       }
     });
   }
@@ -55,69 +81,32 @@ export class SsoBtnsWrapperComponent {
     this.authService.signOut();
   }
 
-  register(data: SocialUser) {
-    let dataSignUp = {
-      email: data.email,
-      username: data.email.slice(0, data.email.indexOf('@')),
-      firstName: data.firstName,
-      lastName: data.lastName,
-      phone: '01272040125',
-      password: 'P@ssw0rd',
-      rePassword: 'P@ssw0rd',
-    };
-
-    let dataLogin = {
-      email: data.email,
-      password: 'P@ssw0rd',
-    };
-
-    this._AuthApiManagerService.register(baseUrl, dataSignUp).subscribe({
+  register() {
+    this._AuthApiManagerService.register(baseUrl, this.signUp_Obj).subscribe({
       next: (res) => {
-        let severity = '';
-        let title = '';
-        let message = '';
-
         if (res.message == 'success') {
-          severity = 'success';
-          title = 'Welcome!';
-          message = 'You have created an account successfully';
           this._TokenManagerService.setToken(res.token);
           this._Router.navigate(['/main/dashboard']);
         } else {
           let errorMsg = res.error.message;
-          severity = 'error';
-          title = 'Error!';
-          message = errorMsg;
           console.log(errorMsg);
-          this.login(dataLogin);
+          this.login();
         }
-
-        //this._Toaster.showToaster(severity, title, message);
       },
     });
   }
 
-  login(data: any) {
-    this._AuthApiManagerService.login(baseUrl, data).subscribe({
+  login() {
+    this._AuthApiManagerService.login(baseUrl, this.login_Obj).subscribe({
       next: (res) => {
-        let severity = '';
-        let title = '';
-        let message = '';
         if (res.message == 'success') {
-          severity = 'success';
-          title = 'Welcome!';
-          message = 'You have logged-in successfully';
           this._TokenManagerService.setToken(res.token);
           this.canNavigate = true;
         } else {
           let errorMsg = res.error.message;
-          severity = 'error';
-          title = 'Error!';
-          message = errorMsg;
+
           console.log(errorMsg);
         }
-
-        //this._Toaster.showToaster(severity, title, message);
         this.canNavigate && this._Router.navigate(['/main/dashboard']);
       },
     });
