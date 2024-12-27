@@ -9,6 +9,8 @@ import { SubjectsAPIService } from '../../../features/services/subjects-api.serv
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { Router } from '@angular/router';
 import { SkeletonModule } from 'primeng/skeleton';
+import { ScrollerModule } from 'primeng/scroller';
+import { VirtualScrollerModule } from 'primeng/virtualscroller'; // Import VirtualScrollerModule
 
 @Component({
   selector: 'app-dashboard',
@@ -19,7 +21,9 @@ import { SkeletonModule } from 'primeng/skeleton';
     CustomSectionComponent,
     SubjectCardComponent,
     ScrollingModule,
+    ScrollerModule,
     SkeletonModule,
+    VirtualScrollerModule,
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
@@ -33,7 +37,7 @@ export class DashboardComponent implements OnInit {
   // Declare Vars
   userObj: any;
   allSubjects: any = [];
-
+  items!: string[];
   isUserInfoLoaded = false;
   isSubjectsDataLoaded = false;
 
@@ -55,6 +59,12 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  loadItems(event: any) {
+    console.log('Loading more items', event);
+
+    this.getAllSubjects(event.first + 1, event.last);
+  }
+
   goToExamsOfSubject(subjectId: string) {
     this._Router.navigate(['main/exams'], {
       queryParams: { subject: subjectId },
@@ -68,5 +78,6 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.getUserInfo();
     this.getAllSubjects(1, 3);
+    this.items = Array.from({ length: 1000 }).map((_, i) => `Item #${i}`);
   }
 }

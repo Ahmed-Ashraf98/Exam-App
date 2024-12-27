@@ -1,24 +1,22 @@
 import { inject, Injectable } from '@angular/core';
-import { LocalStorageManagerService } from './local-storage-manager.service';
+import { CookieManagerService } from './cookie-manager.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TokenManagerService {
   private readonly tokenKeyName = 'token';
-  private readonly _LocalStorageManagerService = inject(
-    LocalStorageManagerService
-  );
+  private readonly _CookieManagerService = inject(CookieManagerService);
 
   set setToken(token: string) {
-    this._LocalStorageManagerService.setData(this.tokenKeyName, token);
+    this._CookieManagerService.setCookie(this.tokenKeyName, token);
   }
 
   get getToken(): string | null {
-    return this._LocalStorageManagerService.getData(this.tokenKeyName);
+    return this._CookieManagerService.getCookie(this.tokenKeyName);
   }
 
   clearToken() {
-    this._LocalStorageManagerService.removeData(this.tokenKeyName);
+    this._CookieManagerService.deleteCookie(this.tokenKeyName);
   }
 }

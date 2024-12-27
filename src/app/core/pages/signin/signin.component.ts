@@ -10,6 +10,7 @@ import { ToastComponent } from '../../../shared/components/ui/toast/toast.compon
 import { baseUrl } from '../../environment/environment.prod';
 import { AuthFormsService } from 'auth-forms';
 import { TokenManagerService } from '../../services/token-manager.service';
+import { SocialAuthService } from '@abacritt/angularx-social-login';
 @Component({
   selector: 'app-signin',
   standalone: true,
@@ -32,6 +33,7 @@ export class SigninComponent {
   private readonly _AuthFormsService = inject(AuthFormsService);
   private readonly _TokenManagerService = inject(TokenManagerService);
   private readonly _Router = inject(Router);
+  private readonly _AuthService = inject(SocialAuthService);
   // Create instance from toaster
   private readonly _Toaster = new ToastComponent();
   // initialize the variables

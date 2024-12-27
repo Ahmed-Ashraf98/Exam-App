@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-sso-button',
@@ -9,4 +9,9 @@ import { Component, Input } from '@angular/core';
 })
 export class SsoButtonComponent {
   @Input() imgUrl!: string;
+  @Output() onClick = new EventEmitter<string>();
+
+  clickHandler() {
+    this.onClick.emit();
+  }
 }

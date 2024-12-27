@@ -42,7 +42,7 @@
 
 @if (showModal) {
 <!-- [modalMinWidth]="500" -->
-<app-custom-modal>
+<app-custom-modal [modalMinWidth]="500">
   <app-exam-modal
     [examId]="id"
     [numOfQuestions]="numOfQuestions"

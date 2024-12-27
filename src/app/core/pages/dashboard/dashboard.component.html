@@ -71,13 +71,52 @@
     }
   </ul>
 
-  <!-- <cdk-virtual-scroll-viewport
-    itemSize="200"
-    (scrolledIndexChange)="onScroll($event)"
-    style="height: 400px; width: auto; border: 1px solid black; overflow: auto"
+  <!-- <p-scroller
+    [items]="items"
+    [itemSize]="200"
+    [delay]="250"
+    [lazy]="true"
+    (onLazyLoad)="loadItems($event)"
+    scrollHeight="400px"
+    styleClass="border-1 surface-border"
+    [style]="{ width: '100%' }"
   >
-    <div *cdkVirtualFor="let item of items" class="item">
-      {{ item }}
-    </div>
-  </cdk-virtual-scroll-viewport> -->
+    <ng-template pTemplate="item" let-item let-options="options">
+      <div
+        class="flex align-items-center p-2"
+        [class]="{ 'surface-ground': options.odd }"
+        style="height: 200px"
+      >
+        {{ item }}
+      </div>
+    </ng-template>
+  </p-scroller>
+
+  <ul class="unstyled-list p-0 flex flex-wrap">
+    <p-scroller
+      [items]="allSubjects"
+      [itemSize]="200"
+      [delay]="250"
+      [lazy]="true"
+      (onLazyLoad)="loadItems($event)"
+      scrollHeight="200px"
+      styleClass="border-1 surface-border"
+      [style]="{ width: '100%' }"
+    >
+      <ng-template pTemplate="item" let-item let-options="options">
+        <div
+          class="flex align-items-center p-2"
+          [class]="{ 'surface-ground': options.odd }"
+          style="height: 200px; margin: 100px 5px"
+        >
+          <app-subject-card
+            (actionToParent)="goToExamsOfSubject(item._id)"
+            [id]="item._id"
+            [icon]="item.icon"
+            [name]="item.name"
+          ></app-subject-card>
+        </div>
+      </ng-template>
+    </p-scroller>
+  </ul> -->
 </app-custom-section>
