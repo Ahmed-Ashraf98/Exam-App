@@ -22,3 +22,11 @@
     height: 20px;
   }
 }
+
+:host ::ng-deep .google-btn {
+  padding: 10px !important;
+  border-radius: 15.38px !important;
+  border: 1.02px solid #e0e0e9 !important;
+  background: #ffffff !important;
+  cursor: pointer;
+}
