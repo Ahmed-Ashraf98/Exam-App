@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PasswordModule } from 'primeng/password';
 import { InputTextModule } from 'primeng/inputtext';
@@ -27,7 +27,7 @@ import { TokenManagerService } from '../../services/token-manager.service';
   templateUrl: './signin.component.html',
   styleUrl: './signin.component.scss',
 })
-export class SigninComponent {
+export class SigninComponent implements OnInit {
   // inject services
   private readonly _AuthApiManagerService = inject(AuthApiManagerService);
   private readonly _AuthFormsService = inject(AuthFormsService);
@@ -69,5 +69,9 @@ export class SigninComponent {
         this.canNavigate && this._Router.navigate(['/main/dashboard']);
       },
     });
+  }
+
+  ngOnInit(): void {
+    console.log('Neeeeeewww Coooode');
   }
 }
